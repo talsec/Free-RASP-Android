@@ -5,10 +5,10 @@ freeRASP for Android is a part of security SDK for the app shielding and securit
 # Usage
 
 We will guide you step-by-step, but you can always check the expected result in the demo app. This is how final files should look like: 
-* [build.gradle (:app)]()
-* [build.gradle (project)]()
-* [TalsecApplication.kt]()
-* [AndroidManifest.xml]()
+* [build.gradle (:app)](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/build.gradle)
+* [build.gradle (project)](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/build.gradle)
+* [TalsecApplication.kt](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/src/main/java/com/aheaditec/talsec/demoapp/TalsecApplication.kt)
+* [AndroidManifest.xml](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/src/main/AndroidManifest.xml)
 
 ## Step 1: Add Talsec to your Gradle
 Set our nexus artifact repository in your project's `build.gradle`:
@@ -125,7 +125,8 @@ override fun onCreate() {
 }
 ```
 
-4. Implement methods of `ThreatListener.ThreatDetected`. For example you can kill app, warn user or send the event to your backend service.
+## Step 3: Handle detected threats
+Implement methods of `ThreatListener.ThreatDetected`. For example you can kill app, warn user or send the event to your backend service.
 ```kt
 [TalsecApplication.kt]
 
@@ -160,12 +161,4 @@ override fun onFingerprintDetected() {
 }
 ```
 
-8. You're done 🎉!
-
-## Step 3: Handle detected threats
-
-
-
-
-
-(Debugger can be used, Emulator can be used).
+And you're done 🎉! You can open issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
