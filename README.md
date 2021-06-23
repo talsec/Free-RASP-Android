@@ -13,7 +13,7 @@ We will guide you step-by-step, but you can always check the expected result in 
 ## Step 1: Add Talsec to your Gradle
 Set our nexus artifact repository in your project's `build.gradle`:
 ```gradle
-[build.gralde (NameOfProject)]
+[build.gradle (NameOfProject)]
 ...
 
 allprojects {
