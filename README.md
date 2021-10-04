@@ -80,7 +80,7 @@ override fun onCreate() {
     //Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
-The value of watcherMail is automatically used as target address for security reports. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery as these are already included internally.
+The value of watcherMail is automatically used as target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery as these are already included internally.
 ```kt
 [TalsecApplication.kt]
 
