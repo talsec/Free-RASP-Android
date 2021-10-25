@@ -44,12 +44,17 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         TODO("Not yet implemented")
     }
 
+    override fun onUntrustedInstallationSourceDetected() {
+        // Set your reaction
+        TODO("Not yet implemented")
+    }
+
     override fun onHookDetected() {
         // Set your reaction
         TODO("Not yet implemented")
     }
 
-    override fun onFingerprintDetected() {
+    override fun onDeviceBindingDetected() {
         // Set your reaction
         TODO("Not yet implemented")
     }
@@ -61,7 +66,8 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         private const val watcherMail = "john@example.com" // for Alerts and Reports
         private val supportedAlternativeStores = arrayOf(
             // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
-            "com.sec.android.app.samsungapps" // Samsung Store
+            "com.sec.android.app.samsungapps", // Samsung Store
+            "adb" // Installation using ADB
         )
     }
 }

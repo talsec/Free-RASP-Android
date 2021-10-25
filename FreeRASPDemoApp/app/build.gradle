@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.aheaditec.talsec.demoapp"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -34,9 +34,9 @@ android {
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:2.6.0-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.0.0-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:2.6.0-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.0.0-dev'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
