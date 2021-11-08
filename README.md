@@ -2,6 +2,14 @@
 
 freeRASP for Android is a part of security SDK for the app shielding and security monitoring. Learn more about provided features on the [freeRASP's main repository](https://github.com/talsec/Free-RASP-Community) first.
 
+<table>
+<tbody>
+</tr>
+<td>⚠️ Attention ⚠️ Update to the latest (<strong>v3.1.0+</strong>) version. Previous versions contain a bug that impacts logged data.<br>
+</td>
+</tbody>
+</table>
+
 # Usage
 
 We will guide you step-by-step, but you can always check the expected result in the demo app. This is how final files should look like: 
@@ -32,9 +40,9 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.0.0-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.1.0-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.0.0-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.1.0-dev'
     ...
 ```
 
