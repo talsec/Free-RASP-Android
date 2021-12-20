@@ -2,14 +2,6 @@
 
 freeRASP for Android is a part of security SDK for the app shielding and security monitoring. Learn more about provided features on the [freeRASP's main repository](https://github.com/talsec/Free-RASP-Community) first.
 
-<table>
-<tbody>
-</tr>
-<td>⚠️ Attention ⚠️ Update to the latest (<strong>v3.1.0+</strong>) version. Previous versions contain a bug that impacts logged data.<br>
-</td>
-</tbody>
-</table>
-
 # Usage
 
 We will guide you step-by-step, but you can always check the expected result in the demo app. This is how final files should look like: 
@@ -173,5 +165,25 @@ override fun onDeviceBindingDetected() {
     TODO("Not yet implemented")
 }
 ```
+
+## Step 4: Google Play's User Data policy
+Google Play’s User Data policy indicates that applications should inform users properly of the data that they are collecting and processing, and therefore rejects the apps which do not comply with the policy. To comply with the policy, in the App content section, under Data Safety, it is important to check following:
+* Data types:
+    * App Activity -> Installed apps
+    * App info and performance -> Diagnostics, Other app performance data
+    * Device or other identifiers -> Device or other identifiers
+* Data usage and handling:
+    * App Activity -> Installed apps -> Collected, Shared -> Fraud prevention, security, and compliance
+    * App info and performance -> Diagnostics, Other app performance data -> Collected, Shared -> Fraud prevention, security, and compliance
+    * Device or other identifiers -> Device or other identifiers -> Collected, Shared -> Fraud prevention, security, and compliance
+
+It is also important to include the information in the privacy policy of the application, see the [Processed data and GDPR compliancy](https://github.com/talsec/Free-RASP-Community#processed-data-and-gdpr-compliancy).
+
+Google Play’s User Data policy also indicates that a prominent disclosure should be presented to the users, in case of an app collecting personal or sensitive data. Therefore the application must include a disclosure screen, describing why the data is needed, what data, and how the data is used. [Link to best practices and guidelines](https://support.google.com/googleplay/android-developer/answer/11150561?hl=en&ref_topic=2364761)
+
+An example of a disclosure screen:
+<h1 align=left>
+<img src="https://github.com/talsec/Free-RASP-Community/blob/master/visuals/disclosure_screen.png" width=25%>
+</h1>
 
 And you're done 🎉! You can open issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
