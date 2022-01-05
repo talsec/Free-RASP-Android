@@ -167,15 +167,13 @@ override fun onDeviceBindingDetected() {
 ```
 
 ## Step 4: Google Play's User Data policy
-Google Play’s User Data policy indicates that applications should inform users properly of the data that they are collecting and processing, and therefore rejects the apps which do not comply with the policy. To comply with the policy, in the App content section, under Data Safety, it is important to check following:
-* Data types:
-    * App Activity -> Installed apps
-    * App info and performance -> Diagnostics, Other app performance data
-    * Device or other identifiers -> Device or other identifiers
-* Data usage and handling:
-    * App Activity -> Installed apps -> Collected, Shared -> Fraud prevention, security, and compliance
-    * App info and performance -> Diagnostics, Other app performance data -> Collected, Shared -> Fraud prevention, security, and compliance
-    * Device or other identifiers -> Device or other identifiers -> Collected, Shared -> Fraud prevention, security, and compliance
+Google Play’s User Data policy indicates that applications should inform users properly of the data that they are collecting and processing, and therefore rejects the apps which do not comply with the policy. For the purpose of **Fraud prevention, security, and compliance** and in accordance with local regulations the application collects the following data: 
+* Category: App info and performance 
+    * Data Type: Diagnostics
+    * Information about the integrity of the app and operating system. For example, rooting, running in an emulator, hooking framework usage, etc...
+* Category: Device or other identifiers
+    * Data Type: Device or other identifiers
+    * Information that relates to an individual device. For example, data to control the app instance execution on the device it was initially installed on.
 
 It is also important to include the information in the privacy policy of the application, see the [Processed data and GDPR compliancy](https://github.com/talsec/Free-RASP-Community#processed-data-and-gdpr-compliancy).
 
@@ -183,7 +181,7 @@ Google Play’s User Data policy also indicates that a prominent disclosure shou
 
 An example of a disclosure screen:
 <h1 align=left>
-<img src="https://github.com/talsec/Free-RASP-Community/blob/master/visuals/disclosure_screen.png" width=25%>
+<img src="https://github.com/talsec/Free-RASP-Community/blob/master/visuals/android_talsec_disclosure_screen.png" width=25%>
 </h1>
 
 And you're done 🎉! You can open issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
