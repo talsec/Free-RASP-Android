@@ -166,22 +166,10 @@ override fun onDeviceBindingDetected() {
 }
 ```
 
-## Step 4: Google Play's User Data policy
-Google Play’s User Data policy indicates that applications should inform users properly of the data that they are collecting and processing, and therefore rejects the apps which do not comply with the policy. For the purpose of **Fraud prevention, security, and compliance** and in accordance with local regulations the application collects the following data: 
-* Category: App info and performance 
-    * Data Type: Diagnostics
-    * Information about the integrity of the app and operating system. For example, rooting, running in an emulator, hooking framework usage, etc...
-* Category: Device or other identifiers
-    * Data Type: Device or other identifiers
-    * Information that relates to an individual device. For example, data to control the app instance execution on the device it was initially installed on.
+## Step 4: Google Play's Data Safety Policy
+By April 2022 [Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
 
-It is also important to include the information in the privacy policy of the application, see the [Processed data and GDPR compliancy](https://github.com/talsec/Free-RASP-Community#processed-data-and-gdpr-compliancy).
+Please follow the recommendations and data collection specifications indicated [here](https://github.com/talsec/Free-RASP-Community#data-collection-processing-and-gdpr-compliance).
 
-Google Play’s User Data policy also indicates that a prominent disclosure should be presented to the users, in case of an app collecting personal or sensitive data. Therefore the application must include a disclosure screen, describing why the data is needed, what data, and how the data is used. [Link to best practices and guidelines](https://support.google.com/googleplay/android-developer/answer/11150561?hl=en&ref_topic=2364761)
-
-An example of a disclosure screen:
-<h1 align=left>
-<img src="https://github.com/talsec/Free-RASP-Community/blob/master/visuals/android_talsec_disclosure_screen.png" width=25%>
-</h1>
 
 And you're done 🎉! You can open issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
