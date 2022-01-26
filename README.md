@@ -19,7 +19,7 @@ Set our nexus artifact repository in your project's `build.gradle`:
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
     }
 }
