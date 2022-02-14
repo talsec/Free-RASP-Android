@@ -67,7 +67,9 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     android:name=".TalsecApplication"
     ...
 ```
-3. Setup the Configuration for your App. Set up with your values 😉 . You can uncomment prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHash easily (helper functions are in the `Utils.kt`):
+3. Setup the Configuration for your App. Set up with your values 😉 . 
+
+You must get your expected signing certificate hash (in Base64 form). You can *(if you use Google's Play App Signing)* follow [this manual](https://github.com/talsec/Free-RASP-Android/wiki/Getting-your-signing-certificate-hash-of-app). Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily (helper functions are in the `Utils.kt`):
 
 ```kt
 [TalsecApplication.kt]
@@ -75,9 +77,9 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 override fun onCreate() {
     super.onCreate()
 
-    // Uncomment the following Log.e(...) to get your expectedSigningCertificateHash
-    // Copy the result from logcat and assign to expectedSigningCertificateHash
-    //Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+    // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
+    // Copy the result from logcat and assign to expectedSigningCertificateHashBase64
+    Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
 The value of watcherMail is automatically used as target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery as these are already included internally.
@@ -86,7 +88,7 @@ The value of watcherMail is automatically used as target address for your securi
 
 companion object {
     private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
-    private const val expectedSigningCertificateHash = "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=" // Replace with your release (!) signing certificate hash
+    private const val expectedSigningCertificateHashBase64 = "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=" // Replace with your release (!) signing certificate hash
     private const val watcherMail = "john@example.com" // for Alerts and Reports
     private val supportedAlternativeStores = arrayOf(
         // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
