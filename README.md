@@ -69,7 +69,7 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 ```
 3. Setup the Configuration for your App. Set up with your values 😉 . 
 
-You must get your expected signing certificate hash (in Base64 form). You can *(if you use Google's Play App Signing)* follow [this manual](https://github.com/talsec/Free-RASP-Android/wiki/Getting-your-signing-certificate-hash-of-app). Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily (helper functions are in the `Utils.kt`):
+You must get your expected signing certificate hash (in Base64 form). You can *(if you use Google's Play App Signing)* follow [this manual](https://github.com/talsec/Free-RASP-Android/wiki/Getting-your-signing-certificate-hash-of-app). Alternatively, you can use alreadyprepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily (helper functions are in the `Utils.kt`):
 
 ```kt
 [TalsecApplication.kt]
@@ -172,6 +172,31 @@ override fun onDeviceBindingDetected() {
 }
 ```
 
+### [Optional] Device state information
+Optionally you can use device state listener to get additional information about device state information like device lock and HW backed keystore state.
+ 
+
+```kt
+private val deviceStateListener = object : ThreatListener.DeviceState {
+    override fun onUnlockedDeviceDetected() {
+        // Set your reaction
+        TODO("Not yet implemented")
+    }
+    override fun onHardwareBackedKeystoreNotAvailableDetected() {
+        // Set your reaction
+        TODO("Not yet implemented")
+    }
+}
+```
+and modify initialization of ThreatListener:
+```kt
+    ...
+
+    ThreatListener(this, deviceStateListener).registerListener(this)
+    Talsec.start(this, config)
+```
+
+
 ## Step 4: Test it!
 The easiest way to produce an incident (trigger local reaction check and create a record in security report) is to install a **release** build on an emulator (i.e., Android Emulator, which comes with Android Studio). Both app and freeRASP must be in release mode. You can also use a rooted Android device/emulator, in which case you create an incident even in debug mode.
 
@@ -181,7 +206,7 @@ The easiest way to produce an incident (trigger local reaction check and create 
 
 You can simply override this behaviour to run release freeRASP in debug mode. In your project, navigate to `build.gradle`. At the bottom of the file, you should see:
 
-```
+```gradle
 dependencies {
 
     ... some other imports ...
@@ -195,7 +220,7 @@ dependencies {
 ```
 
 You can edit those lines to import dev and/or release version as you need. This can be used to trigger incidents during the development/testing phase:
-```
+```gradle
 dependencies {
 
     ... some other imports ...
