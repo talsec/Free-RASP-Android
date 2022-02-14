@@ -32,9 +32,9 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.1.0-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.3.2-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.1.0-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.3.2-dev'
     ...
 ```
 
@@ -137,21 +137,25 @@ override fun onRootDetected() {
 
 override fun onDebuggerDetected() {
     // Set your reaction
+    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onEmulatorDetected() {
     // Set your reaction
+    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onTamperDetected() {
     // Set your reaction
+    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onUntrustedInstallationSourceDetected() {
     // Set your reaction
+    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
@@ -166,7 +170,40 @@ override fun onDeviceBindingDetected() {
 }
 ```
 
-## Step 4: Google Play's Data Safety Policy
+## Step 4: Test it!
+The easiest way to produce an incident (trigger local reaction check and create a record in security report) is to install a **release** build on an emulator (i.e., Android Emulator, which comes with Android Studio). Both app and freeRASP must be in release mode. You can also use a rooted Android device/emulator, in which case you create an incident even in debug mode.
+
+**freeRASP copies build type of application:**
+* application in debug mode = freeRASP in dev mode
+* application in release mode = freeRASP in release mode
+
+You can simply override this behaviour to run release freeRASP in debug mode. In your project, navigate to `build.gradle`. At the bottom of the file, you should see:
+
+```
+dependencies {
+
+    ... some other imports ...
+    
+    // Talsec Release
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-release'
+
+    // Talsec Debug
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-dev'
+}
+```
+
+You can edit those lines to import dev and/or release version as you need. This can be used to trigger incidents during the development/testing phase:
+```
+dependencies {
+
+    ... some other imports ...
+    
+    // Just for testing of freeRASP reactions
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-release'
+}
+```
+
+## Step 5: Google Play's Data Safety Policy
 By April 2022 [Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
 
 Please follow the recommendations and data collection specifications indicated [here](https://github.com/talsec/Free-RASP-Community#data-collection-processing-and-gdpr-compliance).
