@@ -1,52 +1,71 @@
+<h1>
+<img src="https://raw.githubusercontent.com/talsec/Free-RASP-Community/master/visuals/freeRASP.png" width=100%>
+</h1>
+
 # freeRASP for Android
 
-freeRASP for Android is a part of security SDK for the app shielding and security monitoring. Learn more about provided features on the [freeRASP's main repository](https://github.com/talsec/Free-RASP-Community) first.
+FreeRASP for Android is a lightweight and easy-to-use mobile app protection and security monitoring SDK. It is designed to combat reverse engineering, tampering, or similar attack attempts. FreeRASP covers several attack vectors and enables you to set a response to each threat.
+
+Android version detects security issues such as:
+* App installed on a rooted device
+* Hooking or running the app on the emulator
+* Tampering with the application
+* Attaching a debugger to the application
+
+To learn more about freeRASP features, visit our main GitHub [repository](https://github.com/talsec/Free-RASP-Community). You should also check out our [iOS](https://github.com/talsec/Free-RASP-iOS) and [Flutter](https://github.com/talsec/Free-RASP-Flutter) versions.
 
 # Usage
+The installation guide will lead you through the following steps:
+* [Add Talsec to Gradle](#step-1-add-talsec-to-your-gradle)
+	+ [Dev vs Release version](#dev-vs-release-version)
+* [Setup the configuration](#step-2-setup-the-configuration-for-your-app)
+* [Handle detected threats](#step-3-handle-detected-threats)
+* [Test it](#step-4-test-it)
+* [Google Play Data Safety Policy](#step-5-google-plays-data-safety-policy)
 
-We will guide you step-by-step, but you can always check the expected result in the demo app. This is how final files should look like: 
+You can check the expected result in the demo app. This is how final files should look like: 
 * [build.gradle (:app)](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/build.gradle)
 * [build.gradle (project)](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/build.gradle)
 * [TalsecApplication.kt](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/src/main/java/com/aheaditec/talsec/demoapp/TalsecApplication.kt)
 * [AndroidManifest.xml](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/src/main/AndroidManifest.xml)
 
 ## Step 1: Add Talsec to your Gradle
-Set our nexus artifact repository in your project's `build.gradle`:
+Set our nexus artifact repository in your project's `build.gradle` (or `settings.gradle` if you are using settings repositories):
 ```gradle
 [build.gradle (NameOfProject)]
 ...
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
-    }
+repositories {
+    google()
+    mavenCentral()
+    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
+    maven { url "https://developer.huawei.com/repo/" }
 }
 ```
 
 Set release and debug dependencies in your :app module's `build.gradle`:
 ```gradle
-[build.gradle (:app)]
+[build.gradle (: app)]
 ...
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.3.2-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:3.3.2-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-dev'
     ...
 ```
 
-### Dev vs. Release version
-Dev version is used during the development of application. It separates development and production data and disables some checks which won't be triggered during development process:
-* Emulator-usage
+### Dev vs Release version
+The Dev version is used during the development of the application. It separates development and production data and disables some checks which won't be triggered during the development process:
+* Emulator
 * Debugging
-* Signing
+* Tampering
+* Unofficial store
+
 
 ## Step 2: Setup the Configuration for your App
 
-1. Create arbitrary subclass of `Application()`, override it's `onCreate()` and implement interface of `ThreatListener.ThreatDetected`. You can of course use your Application subclass, if you already have one in your project.
+1. Create arbitrary subclass of `Application()`, override it's `onCreate()` and implement interface of `ThreatListener.ThreatDetected`. You can, of course, use your Application subclass if you already have one in your project.
 ```kt
 [TalsecApplication.kt]
 
@@ -67,9 +86,14 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     android:name=".TalsecApplication"
     ...
 ```
-3. Setup the Configuration for your App. Set up with your values 😉 . 
+3. Setup the Configuration for your app. Set up with your values 😉.
 
-You must get your expected signing certificate hash (in Base64 form). You can *(if you use Google's Play App Signing)* follow [this manual](https://github.com/talsec/Free-RASP-Android/wiki/Getting-your-signing-certificate-hash-of-app). Alternatively, you can use alreadyprepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily (helper functions are in the `Utils.kt`):
+You must get your expected signing certificate hash in Base64 form.
+
+
+You can go through [this manual](https://github.com/talsec/Free-RASP-Community/wiki/Getting-your-signing-certificate-hash-of-app) to learn how to sign your app in more detail, including manual signing and using Google's Play app signing.
+
+Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily. Helper functions are located in the `Utils.kt`:
 
 ```kt
 [TalsecApplication.kt]
@@ -82,7 +106,7 @@ override fun onCreate() {
     Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
-The value of watcherMail is automatically used as target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery as these are already included internally.
+The value of watcherMail is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally.
 ```kt
 [TalsecApplication.kt]
 
@@ -103,13 +127,13 @@ companion object {
 override fun onCreate() {
     ...
 
-    // Uncomment the following Log.e(...) to get your expectedSigningCertificateHash
-    // Copy the result from logcat and assign to expectedSigningCertificateHash and
+    // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
+    // Copy the result from logcat and assign to expectedSigningCertificateHashBase64 and
     //Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
 
     val config = TalsecConfig(
         expectedPackageName,
-        expectedSigningCertificateHash,
+        expectedSigningCertificateHashBase64,
         watcherMail,
         supportedAlternativeStores
     )
@@ -128,52 +152,44 @@ override fun onCreate() {
 ```
 
 ## Step 3: Handle detected threats
-Implement methods of `ThreatListener.ThreatDetected`. For example you can kill app, warn user or send the event to your backend service.
+Implement methods of `ThreatListener.ThreatDetected`. For example, you can kill the app, warn the user or send the event to your backend service.
+
+To learn more about these checks, visit our [wiki](https://github.com/talsec/Free-RASP-Community/wiki/Threat-detection) page that provides an explanation for them.
+
 ```kt
 [TalsecApplication.kt]
 
 override fun onRootDetected() {
-    // Set your reaction
     TODO("Not yet implemented")
 }
 
 override fun onDebuggerDetected() {
-    // Set your reaction
-    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onEmulatorDetected() {
-    // Set your reaction
-    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onTamperDetected() {
-    // Set your reaction
-    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onUntrustedInstallationSourceDetected() {
-    // Set your reaction
-    // Triggered only in release build
     TODO("Not yet implemented")
 }
 
 override fun onHookDetected() {
-    // Set your reaction
     TODO("Not yet implemented")
 }
 
 override fun onDeviceBindingDetected() {
-    // Set your reaction
     TODO("Not yet implemented")
 }
 ```
 
 ### [Optional] Device state information
-Optionally you can use device state listener to get additional information about device state information like device lock and HW backed keystore state.
+Optionally you can use a device state listener to get additional information about device state information like device lock and HW-backed Keystore state.
  
 
 ```kt
@@ -196,7 +212,6 @@ and modify initialization of ThreatListener:
     Talsec.start(this, config)
 ```
 
-
 ## Step 4: Test it!
 The easiest way to produce an incident (trigger local reaction check and create a record in security report) is to install a **release** build on an emulator (i.e., Android Emulator, which comes with Android Studio). Both app and freeRASP must be in release mode. You can also use a rooted Android device/emulator, in which case you create an incident even in debug mode.
 
@@ -204,7 +219,7 @@ The easiest way to produce an incident (trigger local reaction check and create 
 * application in debug mode = freeRASP in dev mode
 * application in release mode = freeRASP in release mode
 
-You can simply override this behaviour to run release freeRASP in debug mode. In your project, navigate to `build.gradle`. At the bottom of the file, you should see:
+You can simply override this behavior to run release freeRASP in debug mode. In your project, navigate to `build.gradle`. At the bottom of the file, you should see:
 
 ```gradle
 dependencies {
@@ -219,7 +234,7 @@ dependencies {
 }
 ```
 
-You can edit those lines to import dev and/or release version as you need. This can be used to trigger incidents during the development/testing phase:
+You can edit those lines to import the dev and/or release version as you need. This can be used to trigger incidents during the development/testing phase:
 ```gradle
 dependencies {
 
@@ -231,9 +246,25 @@ dependencies {
 ```
 
 ## Step 5: Google Play's Data Safety Policy
-By April 2022 [Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
+[Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
+
+Talsec recommends adding the following statements to the Privacy Policy page dedicated to your app. Also, use the text below while filling in the Google Play Safety Section for publishing.
+
+<i>
+For the purpose of Fraud prevention, user safety, and compliance, the dedicated App safety SDK needs to send the following anonymous diagnostic data off the device for detection of security issues. Thus the application collects the following data:
+
+* Category: App info and performance
+    * Data Type: Diagnostics
+    * Information about the integrity of the app and the operating system. For example, rooting, running in an emulator, hooking framework usage, etc...
+* Category: Device or other identifiers
+    * Data Type: Device or other identifiers
+    * Information that relates to an individual device. For example, a device model and anonymous identifier to control that app instance executed on the original device that it was initially installed on. It is needed to combat threats like bots and API abuse.
+</i>
+
+None of the data collected by the freeRASP Talsec Security SDK is considered personal or sensitive. Also, there is no technical way to identify the real person by the identifiers collected by freeRASP SDK.
 
 Please follow the recommendations and data collection specifications indicated [here](https://github.com/talsec/Free-RASP-Community#data-collection-processing-and-gdpr-compliance).
 
+After installation, please go through this [checklist](https://github.com/talsec/Free-RASP-Community/wiki/Installation-checklist) to avoid potential issues or solve them quickly.
 
-And you're done 🎉! You can open issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
+And you're done 🎉! You can open an issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
