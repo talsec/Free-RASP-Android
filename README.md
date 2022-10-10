@@ -56,7 +56,7 @@ dependencies {
 ```
 
 ### Dev vs Release version
-The Dev version is used during the development of the application. It separates development and production data and disables some checks which won't be triggered during the development process:
+The Dev version is used to not complicate the development process of the application, e.g. if you would implement killing of the application on the debugger callback. It disables some checks which won't be triggered during the development process:
 * Emulator
 * Debugging
 * Tampering
@@ -152,7 +152,7 @@ override fun onCreate() {
 ```
 
 ## Step 3: Handle detected threats
-Implement methods of `ThreatListener.ThreatDetected`. For example, you can kill the app, warn the user or send the event to your backend service.
+Implement methods of `ThreatListener.ThreatDetected`. For example, you can kill the app, warn the user or send the event to your backend service. If you decide to kill the application from the callback, make sure that you use an appropriate way of killing it.
 
 To learn more about these checks, visit our [wiki](https://github.com/talsec/Free-RASP-Community/wiki/Threat-detection) page that provides an explanation for them.
 
