@@ -12,7 +12,7 @@ Android version detects security issues such as:
 * Tampering with the application
 * Attaching a debugger to the application
 
-To learn more about freeRASP features, visit our main GitHub [repository](https://github.com/talsec/Free-RASP-Community). You should also check out our [iOS](https://github.com/talsec/Free-RASP-iOS) and [Flutter](https://github.com/talsec/Free-RASP-Flutter) versions.
+To learn more about freeRASP features, visit our main GitHub [repository](https://github.com/talsec/Free-RASP-Community).
 
 # Usage
 The installation guide will lead you through the following steps:
