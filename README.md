@@ -113,7 +113,8 @@ companion object {
     private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
     private const val expectedSigningCertificateHashBase64 = arrayOf(
         "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
-        "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m=") // Replace with your release (!) signing certificate hashes
+        "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m="
+    ) // Replace with your release (!) signing certificate hashes
     private const val watcherMail = "john@example.com" // for Alerts and Reports
     private val supportedAlternativeStores = arrayOf(
         // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
