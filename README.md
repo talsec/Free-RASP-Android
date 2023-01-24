@@ -88,12 +88,11 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 ```
 3. Setup the Configuration for your app. Set up with your values 😉.
 
-You must get your expected signing certificate hash in Base64 form.
-
+You must get your expected signing certificate hashes in Base64 form.
 
 You can go through [this manual](https://github.com/talsec/Free-RASP-Community/wiki/Getting-your-signing-certificate-hash-of-app) to learn how to sign your app in more detail, including manual signing and using Google's Play app signing.
 
-Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily. Helper functions are located in the `Utils.kt`:
+Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get a hash of the signing certificate easily. The `expectedSigningCertificateHashBase64` is an array of certificate hashes, as the support of multiple certificate hashes is included (e.g. if you are using a different certificate hash for Huawei App Gallery). The Helper functions are located in the `Utils.kt`:
 
 ```kt
 [TalsecApplication.kt]
@@ -112,7 +111,9 @@ The value of watcherMail is automatically used as the target address for your se
 
 companion object {
     private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
-    private const val expectedSigningCertificateHashBase64 = "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=" // Replace with your release (!) signing certificate hash
+    private const val expectedSigningCertificateHashBase64 = arrayOf(
+        "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
+        "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m=") // Replace with your release (!) signing certificate hashes
     private const val watcherMail = "john@example.com" // for Alerts and Reports
     private val supportedAlternativeStores = arrayOf(
         // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
