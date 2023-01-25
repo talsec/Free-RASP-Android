@@ -39,7 +39,7 @@ repositories {
     mavenCentral()
     maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
     maven { url "https://developer.huawei.com/repo/" }
-    maven { url 'https://jitpack.io' }
+    maven { url "https://jitpack.io" }
 }
 ```
 
