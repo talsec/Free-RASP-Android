@@ -103,7 +103,7 @@ override fun onCreate() {
 
     // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
     // Copy the result from logcat and assign to expectedSigningCertificateHashBase64
-    Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+    // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
 The value of watcherMail is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally.
@@ -112,7 +112,7 @@ The value of watcherMail is automatically used as the target address for your se
 
 companion object {
     private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
-    private const val expectedSigningCertificateHashBase64 = arrayOf(
+    private val expectedSigningCertificateHashBase64 = arrayOf(
         "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
         "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m="
     ) // Replace with your release (!) signing certificate hashes
@@ -132,7 +132,7 @@ override fun onCreate() {
 
     // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
     // Copy the result from logcat and assign to expectedSigningCertificateHashBase64 and
-    //Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+    // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
 
     val config = TalsecConfig(
         expectedPackageName,
