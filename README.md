@@ -50,9 +50,9 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-dev'
     ...
 ```
 
