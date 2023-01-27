@@ -39,6 +39,7 @@ repositories {
     mavenCentral()
     maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
     maven { url "https://developer.huawei.com/repo/" }
+    maven { url "https://jitpack.io" }
 }
 ```
 
@@ -49,9 +50,9 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-release'
+    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-release'
     // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:4.2.1-dev'
+    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-dev'
     ...
 ```
 
@@ -88,12 +89,11 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 ```
 3. Setup the Configuration for your app. Set up with your values 😉.
 
-You must get your expected signing certificate hash in Base64 form.
-
+You must get your expected signing certificate hashes in Base64 form.
 
 You can go through [this manual](https://github.com/talsec/Free-RASP-Community/wiki/Getting-your-signing-certificate-hash-of-app) to learn how to sign your app in more detail, including manual signing and using Google's Play app signing.
 
-Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get expectedSigningCertificateHashBase64 easily. Helper functions are located in the `Utils.kt`:
+Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get a hash of the signing certificate easily. The `expectedSigningCertificateHashBase64` is an array of certificate hashes, as the support of multiple certificate hashes is included (e.g. if you are using a different certificate hash for Huawei App Gallery). The Helper functions are located in the `Utils.kt`:
 
 ```kt
 [TalsecApplication.kt]
@@ -103,7 +103,7 @@ override fun onCreate() {
 
     // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
     // Copy the result from logcat and assign to expectedSigningCertificateHashBase64
-    Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+    // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
 The value of watcherMail is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally.
@@ -112,7 +112,10 @@ The value of watcherMail is automatically used as the target address for your se
 
 companion object {
     private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
-    private const val expectedSigningCertificateHashBase64 = "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=" // Replace with your release (!) signing certificate hash
+    private val expectedSigningCertificateHashBase64 = arrayOf(
+        "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
+        "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m="
+    ) // Replace with your release (!) signing certificate hashes
     private const val watcherMail = "john@example.com" // for Alerts and Reports
     private val supportedAlternativeStores = arrayOf(
         // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
@@ -129,7 +132,7 @@ override fun onCreate() {
 
     // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
     // Copy the result from logcat and assign to expectedSigningCertificateHashBase64 and
-    //Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+    // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
 
     val config = TalsecConfig(
         expectedPackageName,

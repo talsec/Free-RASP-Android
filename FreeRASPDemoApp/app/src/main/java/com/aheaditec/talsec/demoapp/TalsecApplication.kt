@@ -13,7 +13,7 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 
         // Uncomment the following Log.e(...) to get your expectedSigningCertificateHashBase64
         // Copy the result from logcat and assign to expectedSigningCertificateHashBase64
-        Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
+        // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
 
         val config = TalsecConfig(
             expectedPackageName,
@@ -21,6 +21,7 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             watcherMail,
             supportedAlternativeStores
         )
+        
         ThreatListener(this, deviceStateListener).registerListener(this)
         Talsec.start(this, config)
     }
