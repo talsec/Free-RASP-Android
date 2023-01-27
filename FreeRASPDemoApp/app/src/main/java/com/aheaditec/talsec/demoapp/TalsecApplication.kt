@@ -79,15 +79,15 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     }
 
     companion object {
-        private const val expectedPackageName =
-            "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
-        private const val expectedSigningCertificateHashBase64 =
-            "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=" // Replace with your RELEASE (!) signing certificate hash (in Base64 form)
+        private const val expectedPackageName = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
+        private val expectedSigningCertificateHashBase64 = arrayOf(
+            "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
+            "cVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0m="
+        ) // Replace with your release (!) signing certificate hashes
         private const val watcherMail = "john@example.com" // for Alerts and Reports
         private val supportedAlternativeStores = arrayOf(
             // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
-            "com.sec.android.app.samsungapps", // Samsung Store
-            "adb" // Installation using ADB
+            "com.sec.android.app.samsungapps" // Samsung Store
         )
     }
 }
