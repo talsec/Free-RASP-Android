@@ -50,7 +50,7 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // freeRASP SDK  
-implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:7.0.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:7.0.0'
     ...
 ```
 
@@ -217,37 +217,7 @@ and modify initialization of ThreatListener:
 ```
 
 ## Step 4: Test it!
-The easiest way to produce an incident (trigger local reaction check and create a record in security report) is to install a **release** build on an emulator (i.e., Android Emulator, which comes with Android Studio). Both app and freeRASP must be in release mode. You can also use a rooted Android device/emulator, in which case you create an incident even in debug mode.
-
-**freeRASP copies build type of application:**
-* application in debug mode = freeRASP in dev mode
-* application in release mode = freeRASP in release mode
-
-You can simply override this behavior to run release freeRASP in debug mode. In your project, navigate to `build.gradle`. At the bottom of the file, you should see:
-
-```gradle
-dependencies {
-
-    ... some other imports ...
-    
-    // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-release'
-
-    // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-dev'
-}
-```
-
-You can edit those lines to import the dev and/or release version as you need. This can be used to trigger incidents during the development/testing phase:
-```gradle
-dependencies {
-
-    ... some other imports ...
-    
-    // Just for testing of freeRASP reactions
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:x.x.x-release'
-}
-```
+The easiest way to produce an incident (trigger local reaction check and create a record in security report) is to install a **release** build on an emulator (i.e., Android Emulator, which comes with Android Studio). Make sure, that you have set up the **isProd** variable to **true**.
 
 ## Step 5: Additional note about obfuscation
 The freeRASP contains public API, so the integration process is as simple as possible. Unfortunately, this public API also creates opportunities for the attacker to use publicly available information to interrupt freeRASP operations or modify your custom reaction implementation in threat callbacks. In order for freeRASP to be as effective as possible, it is highly recommended to apply obfuscation to the final package/application, making the public API more difficult to find and also partially randomized for each application so it cannot be automatically abused by generic hooking scripts.
