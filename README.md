@@ -98,7 +98,7 @@ The value of `watcherMail` is automatically used as the target address for your 
 
 You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally. Otherwise add package names of the alternative stores.
 
-`isProd`  defaults to  `true`  when undefined. If you want to use the Dev version to disable checks described  [in the chapter below](https://github.com/talsec/Free-RASP-Android#dev-vs-release-version), set the parameter to  `false`. Make sure that you have the Release version in the production (i.e. isProd set to true)!
+`isProd`  defaults to  `true`  when undefined. If you want to use the Dev version to disable checks described  [in the chapter below](https://github.com/talsec/Free-RASP-Android#dev-vs-release-version), set the parameter to  `false`. Make sure that you have the Release version in the production (i.e. isProd set to true)!. To simplify switching between debug and release version of Talsec based on the build type, you can use `BuildConfig.BUILD_TYPE.contains("Release", true)` as a value for `isProd`.
 ```kt
 [TalsecApplication.kt]
 
