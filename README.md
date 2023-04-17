@@ -1,3 +1,4 @@
+
 <h1>
 <img src="https://raw.githubusercontent.com/talsec/Free-RASP-Community/master/visuals/freeRASP.png" width=100%>
 </h1>
@@ -17,7 +18,6 @@ To learn more about freeRASP features, visit our main GitHub [repository](https:
 # Usage
 The installation guide will lead you through the following steps:
 * [Add Talsec to Gradle](#step-1-add-talsec-to-your-gradle)
-	+ [Dev vs Release version](#dev-vs-release-version)
 * [Setup the configuration](#step-2-setup-the-configuration-for-your-app)
 * [Handle detected threats](#step-3-handle-detected-threats)
 * [Test it](#step-4-test-it)
@@ -39,7 +39,6 @@ repositories {
     google()
     mavenCentral()
     maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
-    maven { url "https://developer.huawei.com/repo/" }
     maven { url "https://jitpack.io" }
 }
 ```
@@ -50,19 +49,10 @@ Set release and debug dependencies in your :app module's `build.gradle`:
 ...
 
 dependencies {
-    // Talsec Release
-    releaseImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-release'
-    // Talsec Debug
-    debugImplementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:6.0.0-dev'
+    // freeRASP SDK  
+implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:7.0.0'
     ...
 ```
-
-### Dev vs Release version
-The Dev version is used to not complicate the development process of the application, e.g. if you would implement killing of the application on the debugger callback. It disables some checks which won't be triggered during the development process:
-* Emulator
-* Debugging
-* Tampering
-* Unofficial store
 
 
 ## Step 2: Setup the Configuration for your App
@@ -72,11 +62,9 @@ The Dev version is used to not complicate the development process of the applica
 [TalsecApplication.kt]
 
 class TalsecApplication : Application(), ThreatListener.ThreatDetected {
-
     override fun onCreate() {
         super.onCreate()
     }
-
 }
 ```
 
@@ -88,13 +76,9 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     android:name=".TalsecApplication"
     ...
 ```
-3. Setup the Configuration for your app. Set up with your values 😉.
+3. Setup the Configuration for your app with your values 😉.
 
-You must get your expected signing certificate hashes in Base64 form.
-
-You can go through [this manual](https://github.com/talsec/Free-RASP-Community/wiki/Getting-your-signing-certificate-hash-of-app) to learn how to sign your app in more detail, including manual signing and using Google's Play app signing.
-
-Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get a hash of the signing certificate easily. The `expectedSigningCertificateHashBase64` is an array of certificate hashes, as the support of multiple certificate hashes is included (e.g. if you are using a different certificate hash for Huawei App Gallery). The Helper functions are located in the `Utils.kt`:
+You must get your expected signing certificate hashes in Base64 form. You can go through [this manual](https://github.com/talsec/Free-RASP-Community/wiki/Getting-your-signing-certificate-hash-of-app) to learn how to sign your app in more detail, including manual signing and using Google's Play app signing. Alternatively, you can use already prepared helper function `Log.e(..)` in the `onCreate()` to get a hash of the signing certificate easily. The `expectedSigningCertificateHashBase64` is an array of certificate hashes, as the support of multiple certificate hashes is included (e.g. if you are using a different certificate hash for Huawei App Gallery). The Helper functions are located in the `Utils.kt`:
 
 ```kt
 [TalsecApplication.kt]
@@ -107,7 +91,14 @@ override fun onCreate() {
     // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
     ...
 ```
-The value of watcherMail is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally.
+
+The value of `expectedPackageName` is self-explanatory.
+
+The value of `watcherMail` is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. 
+
+You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally. Otherwise add package names of the alternative stores.
+
+`isProd`  defaults to  `true`  when undefined. If you want to use the Dev version to disable checks described  [in the chapter below](https://github.com/talsec/Free-RASP-Android#dev-vs-release-version), set the parameter to  `false`. Make sure that you have the Release version in the production (i.e. isProd set to true)!
 ```kt
 [TalsecApplication.kt]
 
@@ -122,6 +113,7 @@ companion object {
         // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
         "com.sec.android.app.samsungapps" // Samsung Store
     )
+    private val isProd = true
 }
 ```
 
@@ -139,7 +131,8 @@ override fun onCreate() {
         expectedPackageName,
         expectedSigningCertificateHashBase64,
         watcherMail,
-        supportedAlternativeStores
+        supportedAlternativeStores,
+        isProd
     )
 ```
 
@@ -154,6 +147,13 @@ override fun onCreate() {
     Talsec.start(this, config)
 }
 ```
+
+### Dev vs Release version
+The Dev version is used to not complicate the development process of the application, e.g. if you would implement killing of the application on the debugger callback. It disables some checks which won't be triggered during the development process:
+* Emulator
+* Debugging
+* Tampering
+* Unofficial store
 
 ## Step 3: Handle detected threats
 Implement methods of `ThreatListener.ThreatDetected`. For example, you can kill the app, warn the user or send the event to your backend service. If you decide to kill the application from the callback, make sure that you use an appropriate way of killing it.
