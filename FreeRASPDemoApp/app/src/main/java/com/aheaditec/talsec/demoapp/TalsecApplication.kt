@@ -19,7 +19,8 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             expectedPackageName,
             expectedSigningCertificateHashBase64,
             watcherMail,
-            supportedAlternativeStores
+            supportedAlternativeStores,
+            isProd
         )
         
         ThreatListener(this, deviceStateListener).registerListener(this)
@@ -89,5 +90,6 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
             "com.sec.android.app.samsungapps" // Samsung Store
         )
+        private val isProd = true
     }
 }
