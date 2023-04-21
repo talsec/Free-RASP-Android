@@ -245,6 +245,7 @@ android {
 
 See the generic info about freeRASP data collection [here](https://github.com/talsec/Free-RASP-Community/blob/master/README.md#data-collection-processing-and-gdpr-compliance)
 
+
 [Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
 
 Talsec recommends adding the following statements to the Privacy Policy page dedicated to your app. Also, use the text below while filling in the Google Play Safety Section for publishing.
