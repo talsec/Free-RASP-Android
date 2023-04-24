@@ -15,14 +15,22 @@ Android version detects security issues such as:
 
 To learn more about freeRASP features, visit our main GitHub [repository](https://github.com/talsec/Free-RASP-Community).
 
+# :notebook_with_decorative_cover: Table of contents
+
+- [Usage](#usage)
+  - [Step 1: Add Talsec to your Gradle](#step-1-add-talsec-to-your-gradle)
+  - [Step 2: Setup the Configuration for your App](#step-2-setup-the-configuration-for-your-app)
+    - [Dev vs Release version](#dev-vs-release-version)
+  - [Step 3: Handle detected threats](#step-3-handle-detected-threats)
+    - [(Optional) Device state information](#optional-device-state-information)
+  - [Step 4: Test it!](#step-4-test-it)
+  - [Step 5: Additional note about obfuscation](#step-5-additional-note-about-obfuscation)
+  - [Step 6: Google Play's Data Safety Policy](#step-6-google-plays-data-safety-policy)
+- [About Us](#about-us)
+- [License](#license)
+
 # Usage
-The installation guide will lead you through the following steps:
-* [Add Talsec to Gradle](#step-1-add-talsec-to-your-gradle)
-* [Setup the configuration](#step-2-setup-the-configuration-for-your-app)
-* [Handle detected threats](#step-3-handle-detected-threats)
-* [Test it](#step-4-test-it)
-* [Additional note about obfuscation](#step-5-additional-note-about-obfuscation)
-* [Google Play Data Safety Policy](#step-6-google-plays-data-safety-policy)
+The installation guide will lead you through the whole implementation, such as adding the SDK to the gradle, configuring it for your app, handling detected threats. It will also instruct you about required data safety policies.
 
 You can check the expected result in the demo app. This is how final files should look like: 
 * [build.gradle (:app)](https://github.com/talsec/Free-RASP-Android/blob/master/FreeRASPDemoApp/app/build.gradle)
@@ -192,7 +200,7 @@ override fun onDeviceBindingDetected() {
 }
 ```
 
-### [Optional] Device state information
+### (Optional) Device state information
 Optionally you can use a device state listener to get additional information about device state information like device lock and HW-backed Keystore state.
  
 
@@ -243,7 +251,7 @@ android {
 
 ## Step 6: Google Play's Data Safety Policy
 
-See the generic info about freeRASP data collection [here](https://github.com/talsec/Free-RASP-Community/tree/master#data-collection-processing-and-gdpr-compliance)
+See the generic info about freeRASP data collection [here](https://github.com/talsec/Free-RASP-Community/tree/master#data-collection-processing-and-gdpr-compliance).
 
 
 [Google Play requires](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en) all app publishers to declare how they collect and handle user data for the apps they publish on Google Play. They should inform users properly of the data collected by the apps and how the data is shared and processed. Therefore, Google will reject the apps which do not comply with the policy.
