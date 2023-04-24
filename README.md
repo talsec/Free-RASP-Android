@@ -261,7 +261,7 @@ For the purpose of Fraud prevention, user safety, and compliance, the dedicated 
     * Information that relates to an individual device. For example, a device model and anonymous identifier to control that app instance executed on the original device that it was initially installed on. It is needed to combat threats like bots and API abuse.
 </i>
 
-None of the data collected by the freeRASP Talsec Security SDK is considered personal or sensitive. Also, there is no technical way to identify the real person by the identifiers collected by freeRASP SDK.
+All the data collected by the freeRASP Talsec Security SDK is considered non user sensitive. Also, there is no technical way to identify the real person by the identifiers collected by freeRASP SDK.
 
 Please follow the recommendations and data collection specifications indicated [here](https://github.com/talsec/Free-RASP-Community#data-collection-processing-and-gdpr-compliance).
 
