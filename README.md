@@ -26,6 +26,9 @@ To learn more about freeRASP features, visit our main GitHub [repository](https:
   - [Step 4: Test it!](#step-4-test-it)
   - [Step 5: Additional note about obfuscation](#step-5-additional-note-about-obfuscation)
   - [Step 6: Google Play's Data Safety Policy](#step-6-google-plays-data-safety-policy)
+- [Security Report](#security-report)
+- [Commercial versions (RASP+ and more)](#bar_chart-commercial-versions-rasp-and-more)
+    * [Plans comparison](#plans-comparison)
 - [About Us](#about-us)
 - [License](#license)
 
@@ -276,6 +279,163 @@ Please follow the recommendations and data collection specifications indicated [
 After installation, please go through this [checklist](https://github.com/talsec/Free-RASP-Community/wiki/Installation-checklist) to avoid potential issues or solve them quickly.
 
 And you're done 🎉! You can open an issue if you get stuck anywhere in the guide or show your appreciation by starring this repository ⭐!
+
+# Security Report
+
+The Security Report is a weekly summary describing the application's security state and characteristics of the devices it runs on in a practical and easy-to-understand way.
+
+The report provides a quick overview of the security incidents, their dynamics, app integrity, and reverse engineering attempts. It contains info about the security of devices, such as OS version or the ratio of devices with screen locks and biometrics. Each visualization also comes with a concise explanation.
+
+To receive Security Reports, fill out the _watcherMail_ field in [Talsec config](#step-2-setup-the-configuration-for-your-app).
+
+![enter image description here](https://raw.githubusercontent.com/talsec/Free-RASP-Community/master/visuals/dashboard.png)
+
+# :bar_chart: Commercial versions (RASP+ and more)
+We provide app security hardening SDK: i.e. AppiCrypt®, Customer Data Encryption (local storage), End-to-end encryption, Strings protection (e.g. API keys) and Dynamic Certificate Pinning to our commercial customers as well. To get the most advanced protection compliant with PSD2 RT and eIDAS and support from our experts, contact us at [talsec.app](https://talsec.app).
+
+The commercial version provides a top-notch protection level, extra features, support, and maintenance. One of the most valued commercial features is [AppiCrypt®](https://www.talsec.app/appicrypt) - App Integrity Cryptogram.
+
+It allows easy to implement API protection and App Integrity verification on the backend to prevent API abuse:
+
+-   Bruteforce attacks
+-   Botnets
+-   Session-hijacking
+-   DDoS
+
+It is a unified solution that works across all mobile platforms without dependency on external web services (i.e., without extra latency, an additional point of failure, and maintenance costs).
+
+Learn more about commercial features at  [https://talsec.app](https://talsec.app/).
+
+**TIP:** You can try freeRASP and then upgrade easily to an enterprise service.
+
+
+## Plans Comparison
+<i>
+freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impose some limitations on the free usage. See the FUP section in the table below
+</i>
+<br/>
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>freeRASP</th>
+            <th>Business RASP+</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan=5><strong>Runtime App Self Protection (RASP, app shielding)</strong></td>
+        </tr>
+        <tr>
+            <td>Advanced root/jailbreak protections</td>
+            <td>basic</td>
+            <td>advanced</td>
+        </tr>
+        <tr>
+            <td>Runtime reverse engineering controls 
+                <ul>
+                    <li>Debug</li>
+                    <li>Emulator</li>
+                    <li>Hooking protections (e.g. Frida)</li>
+                </ul>
+            </td>
+            <td>basic</td>
+            <td>advanced</td>
+        </tr>
+        <tr>
+            <td>Runtime integrity controls 
+                <ul>
+                    <li>Tamper protection</li>
+                    <li>Repackaging / Cloning protection</li>
+                    <li>Device binding protection</li>
+                    <li>Unofficial store detection</li>
+                </ul>
+            </td>
+            <td>basic</td>
+            <td>advanced</td>
+        </tr>
+        <tr>
+            <td>Device OS security status check 
+                <ul>
+                    <li>HW security module control</li>
+                    <li>Screen lock control</li>
+                </ul>
+            </td>
+            <td>yes</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td>UI protection 
+                <ul>
+                    <li>Overlay protection</li>
+                    <li>Accessibility services protection</li>
+                </ul>
+            </td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td colspan=5><strong>Hardening suite</strong></td>
+        </tr>
+        <tr>
+            <td>Security hardening suite 
+                <ul>
+                    <li>Customer Data Encryption (local storage)</li>
+                    <li>End-to-end encryption</li>
+                    <li>Strings protection (e.g. API keys)</li>
+                    <li>Dynamic certificate pinning</li>
+                </ul>
+            </td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td colspan=5><strong>AppiCrypt® - App Integrity Cryptogram</strong></td>
+        </tr>
+        <tr>
+            <td>API protection by mobile client integrity check, online risk scoring, online fraud prevention, client App integrity check. The cryptographic proof of app & device integrity.</td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td colspan=5><strong>Monitoring</strong></td>
+        </tr>
+        <tr>
+            <td>AppSec regular email reporting</td>
+            <td>yes (up to 100k devices)</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td>Data insights and auditing portal</td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td>Embed code to integrate with portal</td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+        <tr>
+            <td>API data access</td>
+            <td>no</td>
+            <td>yes</td>
+        </tr>
+         <td colspan=5><strong>Fair usage policy</strong></td>
+        <tr>
+            <td>Mentioning of the App name and logo in the marketing communications of Talsec (e.g. "Trusted by" section of the Talsec web or in the social media).</td>
+            <td>over 100k downloads</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Threat signals data collection to Talsec database for processing and product improvement</td>
+            <td>yes</td>
+            <td>no</td>
+        </tr>
+    </tbody>
+</table>
+
+For further comparison details (and planned features), follow our [discussion](https://github.com/talsec/Free-RASP-Community/discussions/5).
 
 # About Us
 Talsec is an academic-based and community-driven mobile security company. We deliver in-App Protection and a User Safety suite for Fintechs. We aim to bridge the gaps between the user's perception of app safety and the strong security requirements of the financial industry. 
