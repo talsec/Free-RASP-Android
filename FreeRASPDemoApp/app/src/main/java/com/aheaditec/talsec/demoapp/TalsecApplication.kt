@@ -66,6 +66,11 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         TODO("Not yet implemented")
     }
 
+    override fun onObfuscationIssuesDetected() {
+        // Set your reaction
+        TODO("Not yet implemented")
+    }
+
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
     private val deviceStateListener = object : ThreatListener.DeviceState {
         override fun onUnlockedDeviceDetected() {

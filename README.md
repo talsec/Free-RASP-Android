@@ -49,19 +49,21 @@ Set our nexus artifact repository in your project's `build.gradle` (or `settings
 repositories {
     google()
     mavenCentral()
-    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
     maven { url "https://jitpack.io" }
+    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
 }
 ```
 
-Set release and debug dependencies in your :app module's `build.gradle`:
+**Make sure, that the nexus3 dependency is at the last position.**
+
+Set dependencies in your :app module's `build.gradle`:
 ```gradle
 [build.gradle (: app)]
 ...
 
 dependencies {
     // freeRASP SDK  
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:7.0.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:8.0.1'
     ...
 ```
 
@@ -201,6 +203,10 @@ override fun onHookDetected() {
 override fun onDeviceBindingDetected() {
     TODO("Not yet implemented")
 }
+
+override fun onObfuscationIssuesDetected() {
+    TODO("Not yet implemented")
+}
 ```
 
 ### (Optional) Device state information
@@ -328,16 +334,16 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
             <td colspan=5><strong>Runtime App Self Protection (RASP, app shielding)</strong></td>
         </tr>
         <tr>
-            <td>Advanced root/jailbreak protections</td>
+            <td>Advanced root/jailbreak protections (including Magisk)</td>
             <td>basic</td>
             <td>advanced</td>
         </tr>
         <tr>
             <td>Runtime reverse engineering controls 
                 <ul>
-                    <li>Debug</li>
-                    <li>Emulator</li>
-                    <li>Hooking protections (e.g. Frida)</li>
+                    <li>Debugger</li>
+                    <li>Emulator / Simulator</li>
+                    <li>Hooking and reversing frameworks (e.g. Frida, Magisk, XPosed, Cydia Substrate and more)</li>
                 </ul>
             </td>
             <td>basic</td>
@@ -346,7 +352,7 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
         <tr>
             <td>Runtime integrity controls 
                 <ul>
-                    <li>Tamper protection</li>
+                    <li>Tampering protection</li>
                     <li>Repackaging / Cloning protection</li>
                     <li>Device binding protection</li>
                     <li>Unofficial store detection</li>
@@ -360,6 +366,8 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
                 <ul>
                     <li>HW security module control</li>
                     <li>Screen lock control</li>
+                    <li>Google Play Services enabled/disabled</li>
+                    <li>Last security patch update</li>
                 </ul>
             </td>
             <td>yes</td>
@@ -369,7 +377,7 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
             <td>UI protection 
                 <ul>
                     <li>Overlay protection</li>
-                    <li>Accessibility services protection</li>
+                    <li>Accessibility services misuse protection</li>
                 </ul>
             </td>
             <td>no</td>
@@ -380,11 +388,10 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
         </tr>
         <tr>
             <td>Security hardening suite 
-                <ul>
-                    <li>Customer Data Encryption (local storage)</li>
+                <ul>                
                     <li>End-to-end encryption</li>
                     <li>Strings protection (e.g. API keys)</li>
-                    <li>Dynamic certificate pinning</li>
+                    <li>Dynamic TLS certificate pinning</li>
                 </ul>
             </td>
             <td>no</td>
@@ -399,31 +406,41 @@ freeRASP is freemium software i.e. there is a Fair Usage Policy (FUP) that impos
             <td>yes</td>
         </tr>
         <tr>
-            <td colspan=5><strong>Monitoring</strong></td>
+            <td colspan=5><strong>Security events data collection, Auditing and Monitoring tools</strong></td>
         </tr>
         <tr>
-            <td>AppSec regular email reporting</td>
+            <td>Threat events data collection from SDK</td>
+            <td>yes</td>
+            <td>configurable</td>
+        </tr>
+        <tr>
+            <td>AppSec regular email reporting service</td>
             <td>yes (up to 100k devices)</td>
             <td>yes</td>
         </tr>
         <tr>
-            <td>Data insights and auditing portal</td>
+            <td>UI portal for Logging, Data analytics and auditing</td>
             <td>no</td>
             <td>yes</td>
         </tr>
+        <tr>     
+          <td colspan=5><strong>Support and Maintenance</strong></td>
+        </tr>
         <tr>
-            <td>Embed code to integrate with portal</td>
-            <td>no</td>
+            <td>SLA</td>
+            <td>Not committed</td>
             <td>yes</td>
         </tr>
         <tr>
-            <td>API data access</td>
-            <td>no</td>
+            <td>Maintenance updates</td>
+            <td>Not committed</td>
             <td>yes</td>
         </tr>
-         <td colspan=5><strong>Fair usage policy</strong></td>
         <tr>
-            <td>Mentioning of the App name and logo in the marketing communications of Talsec (e.g. "Trusted by" section of the Talsec web or in the social media).</td>
+            <td colspan=5><strong>Fair usage policy</strong></td>
+        </tr>
+        <tr>
+            <td>Mentioning of the App name and logo in the marketing communications of Talsec (e.g. "Trusted by" section on the web).</td>
             <td>over 100k downloads</td>
             <td>no</td>
         </tr>
