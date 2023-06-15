@@ -56,7 +56,7 @@ repositories {
 
 **Make sure, that the nexus3 dependency is at the last position.**
 
-Set release and debug dependencies in your :app module's `build.gradle`:
+Set dependencies in your :app module's `build.gradle`:
 ```gradle
 [build.gradle (: app)]
 ...
