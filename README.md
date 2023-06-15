@@ -49,10 +49,12 @@ Set our nexus artifact repository in your project's `build.gradle` (or `settings
 repositories {
     google()
     mavenCentral()
-    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
     maven { url "https://jitpack.io" }
+    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
 }
 ```
+
+**Make sure, that the nexus3 dependency is at the last position.**
 
 Set release and debug dependencies in your :app module's `build.gradle`:
 ```gradle
