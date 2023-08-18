@@ -296,15 +296,22 @@ To receive Security Reports, fill out the _watcherMail_ field in [Talsec config]
 
 ![enter image description here](https://raw.githubusercontent.com/talsec/Free-RASP-Community/master/visuals/dashboard.png)
 
-# :bar_chart: Commercial versions (RASP+ and more)
-We provide app security hardening SDK: i.e. AppiCrypt®, Customer Data Encryption (local storage), End-to-end encryption, Strings protection (e.g. API keys) and Dynamic Certificate Pinning to our commercial customers as well. To get the most advanced protection compliant with PSD2 RT and eIDAS and support from our experts, contact us at [talsec.app](https://talsec.app).
+# :money_with_wings: Talsec Commercial Subscriptions 
+Talsec offers commercial plans on top of freeRASP (Business RASP+):
+* No limits of Fair Usage Policy (100K App Downloads) 
+* No Data Collection from your app
+* FinTech grade security, features and SLA (see more in [this post](https://github.com/orgs/talsec/discussions/5) )
+* Protect APIs and risk scoring by AppiCrypt(r)
 
-The commercial version provides a top-notch protection level, extra features, support, and maintenance. One of the most valued commercial features is [AppiCrypt®](https://www.talsec.app/appicrypt) - App Integrity Cryptogram.
+Learn more at [talsec.app](https://talsec.app).
 
-It allows easy to implement API protection and App Integrity verification on the backend to prevent API abuse:
+Not to overlook, the one of the most valued commercial features is [AppiCrypt®](https://www.talsec.app/appicrypt) - App Integrity Cryptogram.
+
+It allows easy-to-implement API protection and App Integrity verification on the backend to prevent API abuse:
 
 -   Bruteforce attacks
 -   Botnets
+-   API abuse by App impersonation
 -   Session-hijacking
 -   DDoS
 
