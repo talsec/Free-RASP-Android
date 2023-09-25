@@ -3,6 +3,8 @@
 <img src="https://raw.githubusercontent.com/talsec/Free-RASP-Community/master/visuals/freeRASP.png" width=100%>
 </h1>
 
+![GitHub Repo stars](https://img.shields.io/github/stars/talsec/Free-RASP-Community?color=green) ![GitHub](https://img.shields.io/github/license/talsec/Free-RASP-Community) ![GitHub](https://img.shields.io/github/last-commit/talsec/Free-RASP-Android) ![Publisher](https://img.shields.io/pub/publisher/freerasp) [![42matters](https://42matters.com/badges/sdk-installations/freerasp)](https://42matters.com/sdks/android/freerasp)
+
 # freeRASP for Android
 
 FreeRASP for Android is a lightweight and easy-to-use mobile app protection and security monitoring SDK. It is designed to combat reverse engineering, tampering, or similar attack attempts. FreeRASP covers several attack vectors and enables you to set a response to each threat.
@@ -109,7 +111,7 @@ The value of `expectedPackageName` is self-explanatory.
 
 The value of `watcherMail` is automatically used as the target address for your security reports. Mail has a strict form `'name@domain.com'`. 
 
-You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally. Otherwise add package names of the alternative stores.
+You can assign just `emptyArray()` to `supportedAlternativeStores` if you publish on the Google Play Store and Huawei AppGallery, as these are already included internally. Otherwise add package names of the alternative stores. For more information, visit the  [Detecting Unofficial Installation](https://github.com/talsec/Free-RASP-Community/wiki/Threat-detection#detecting-unofficial-installation) wiki page.
 
 `isProd`  defaults to  `true`  when undefined. If you want to use the Dev version to disable checks described  [in the chapter below](https://github.com/talsec/Free-RASP-Android#dev-vs-release-version), set the parameter to  `false`. Make sure that you have the Release version in the production (i.e. isProd set to true)!. To simplify switching between debug and release version of Talsec based on the build type, you can use `BuildConfig.BUILD_TYPE.contains("Release", true)` as a value for `isProd`.
 ```kt
@@ -123,8 +125,7 @@ companion object {
     ) // Replace with your release (!) signing certificate hashes
     private const val watcherMail = "john@example.com" // for Alerts and Reports
     private val supportedAlternativeStores = arrayOf(
-        // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
-        "com.sec.android.app.samsungapps" // Samsung Store
+        "com.sec.android.app.samsungapps" // Add other stores, such as the Samsung Galaxy Store
     )
     private val isProd = true
 }
