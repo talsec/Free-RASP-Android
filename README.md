@@ -65,7 +65,7 @@ Set dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // freeRASP SDK  
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.0.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.0.2'
     ...
 ```
 
