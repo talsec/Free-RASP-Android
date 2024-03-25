@@ -29,58 +29,58 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
 
     override fun onRootDetected() {
         // Set your reaction
-        TODO("Not yet implemented")
+        println("onRootDetected")
     }
 
     override fun onDebuggerDetected() {
         // Set your reaction
         // Triggered only in release build
-        TODO("Not yet implemented")
+        println("onDebuggerDetected")
     }
 
     override fun onEmulatorDetected() {
         // Set your reaction
         // Triggered only in release build
-        TODO("Not yet implemented")
+        println("onEmulatorDetected")
     }
 
     override fun onTamperDetected() {
         // Set your reaction
         // Triggered only in release build
-        TODO("Not yet implemented")
+        println("onTamperDetected")
     }
 
     override fun onUntrustedInstallationSourceDetected() {
         // Set your reaction
         // Triggered only in release build
-        TODO("Not yet implemented")
+        println("onUntrustedInstallationSourceDetected")
     }
 
     override fun onHookDetected() {
         // Set your reaction
-        TODO("Not yet implemented")
+        println("onHookDetected")
     }
 
     override fun onDeviceBindingDetected() {
         // Set your reaction
-        TODO("Not yet implemented")
+        println("onDeviceBindingDetected")
     }
 
     override fun onObfuscationIssuesDetected() {
         // Set your reaction
-        TODO("Not yet implemented")
+        println("onObfuscationIssuesDetected")
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
     private val deviceStateListener = object : ThreatListener.DeviceState {
         override fun onUnlockedDeviceDetected() {
             // Set your reaction
-            TODO("Not yet implemented")
+            println("onUnlockedDeviceDetected")
         }
 
         override fun onHardwareBackedKeystoreNotAvailableDetected() {
             // Set your reaction
-            TODO("Not yet implemented")
+            println("onHardwareBackedKeystoreNotAvailableDetected")
         }
     }
 
