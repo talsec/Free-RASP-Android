@@ -18,7 +18,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
+        maven { url "https://europe-west3-maven.pkg.dev/talsec-artifact-repository/freerasp" }
         maven { url 'https://jitpack.io' }
     }
 }
