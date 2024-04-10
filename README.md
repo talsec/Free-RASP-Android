@@ -52,7 +52,7 @@ repositories {
     google()
     mavenCentral()
     maven { url "https://jitpack.io" }
-    maven { url "https://nexus3-public.monetplus.cz/repository/ahead-talsec-free-rasp" }
+    maven { url "https://europe-west3-maven.pkg.dev/talsec-artifact-repository/freerasp" }
 }
 ```
 
@@ -65,7 +65,7 @@ Set dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // freeRASP SDK  
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.0.2'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.1.0'
     ...
 ```
 
