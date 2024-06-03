@@ -226,14 +226,16 @@ private val deviceStateListener = object : ThreatListener.DeviceState {
         // Set your reaction
         TODO("Not yet implemented")
     }
-	
-	override fun onDeveloperModeDetected() {
-	    TODO("Not yet implemented")
-	}
 
-	override fun onSystemVPNDetected() {
-	    TODO("Not yet implemented")
-	}
+    override fun onDeveloperModeDetected() {
+        // Set your reaction
+	TODO("Not yet implemented")
+    }
+
+    override fun onSystemVPNDetected() {
+        // Set your reaction
+	TODO("Not yet implemented")
+    }
 }
 ```
 and modify initialization of ThreatListener:
