@@ -82,6 +82,14 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             // Set your reaction
             println("onHardwareBackedKeystoreNotAvailableDetected")
         }
+
+        override fun onDeveloperModeDetected() {
+            println("onDeveloperModeDetected")
+        }
+
+        override fun onSystemVPNDetected() {
+            println("onSystemVPNDetected")
+        }
     }
 
     companion object {

@@ -67,7 +67,7 @@ Set dependencies in your :app module's `build.gradle`:
 
 dependencies {
     // freeRASP SDK  
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.1.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:9.6.0'
     ...
 ```
 
@@ -225,6 +225,16 @@ private val deviceStateListener = object : ThreatListener.DeviceState {
     override fun onHardwareBackedKeystoreNotAvailableDetected() {
         // Set your reaction
         TODO("Not yet implemented")
+    }
+
+    override fun onDeveloperModeDetected() {
+        // Set your reaction
+	TODO("Not yet implemented")
+    }
+
+    override fun onSystemVPNDetected() {
+        // Set your reaction
+	TODO("Not yet implemented")
     }
 }
 ```
