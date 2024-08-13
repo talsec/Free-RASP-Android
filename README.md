@@ -51,16 +51,6 @@ Learn more about freemium freeRASP features at [GitHub main repository](https://
 
 # :rocket: Discover our GitBook Documentation
 
-Do you have questions or need detailed information about our project? Look no further! For comprehensive and up-to-date guides, tutorials, and technical documentation, visit our [GitBook page](https://talsec.gitbook.io/freerasp). Our GitBook is your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of our project.
-
-:link: We also recommend checking out our [Android Integration Guide](https://talsec.gitbook.io/freerasp/integration/android) on GitBook. This guide provides a detailed introduction and step-by-step instructions to help you integrate smoothly and efficiently.
-
-If you encounter any discrepancies or errors in the documentation, please let us know so we can improve it. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki) which includes legacy details and guidance.
-
-Be sure to bookmark it and stay informed! :books: :sparkles:.
-
-# :rocket: Discover our GitBook Documentation
-
 Do you have questions or need detailed information about our project? Look no further!
 For comprehensive and up-to-date guides, tutorials, and technical documentation, visit our [GitBook page](https://talsec.gitbook.io/freerasp). It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of our project. 
 
