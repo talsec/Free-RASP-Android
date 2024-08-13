@@ -16,7 +16,7 @@ freeRASP for Android is a mobile in-app protection and security monitoring SDK. 
 
 # Overview
 
-The freeRASP is available for Flutter, Android, and iOS developers. We encourage community contributions, investigations of attack cases, joint data research, and other activities aiming to make better app security and app safety for end-users.
+The freeRASP is available for Flutter, Cordova, Capacitor, React Native, Android, and iOS developers. We encourage community contributions, investigations of attack cases, joint data research, and other activities aiming to make better app security and app safety for end-users.
 
 freeRASP SDK is designed to combat
 
@@ -58,3 +58,16 @@ Do you have questions or need detailed information about our project? Look no fu
 If you encounter any discrepancies or errors in the documentation, please let us know so we can improve it. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki) which includes legacy details and guidance.
 
 Be sure to bookmark it and stay informed! :books: :sparkles:.
+
+# :rocket: Discover our GitBook Documentation
+
+Do you have questions or need detailed information about our project? Look no further!
+For comprehensive and up-to-date guides, tutorials, and technical documentation, visit our [GitBook page](https://talsec.gitbook.io/freerasp). It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of our project. 
+
+:link: For integrating it on the Android platform, be sure to follow all the steps in our [Integration Guide](https://talsec.gitbook.io/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
+
+Be sure to bookmark it and stay informed! :books: :sparkles:.
+
+
+# Reference to Our Legacy Documentation
+If you encounter any discrepancies or errors in the documentation, please let us know so we can improve it and ensure the best experience for all users. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki), which includes comprehensive legacy details and guidance. We appreciate your feedback, as it helps us refine our resources and better support your needs.
