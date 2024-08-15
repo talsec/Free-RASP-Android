@@ -12,6 +12,7 @@
 
 freeRASP for Android is a mobile in-app protection and security monitoring SDK. It aims to cover the main aspects of RASP (Runtime App Self Protection) and application shielding.
 
+:loudspeaker: The official documentation has been moved to a new location. You can now find it [here](https://talsec.gitbook.io/freerasp). :loudspeaker:
 
 
 # Overview
@@ -50,14 +51,14 @@ Learn more about commercial features at [https://talsec.app](https://talsec.app)
 Learn more about freemium freeRASP features at [GitHub main repository](https://github.com/talsec/Free-RASP-Community).
 
 
-# :rocket: Discover GitBook Documentation
+# :rocket: Discover Official Documentation
+Visit the [GitBook page](https://talsec.gitbook.io/freerasp) for comprehensive and up-to-date guides, tutorials, and technical documentation. It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of the project.
 
-For comprehensive and up-to-date guides, tutorials, and technical documentation, visit the [GitBook page](https://talsec.gitbook.io/freerasp). It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of the project.
-
-:link: For integrating it on the Android platform, be sure to follow all the steps in the [Integration Guide](https://talsec.gitbook.io/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
+## :link: Integration Guide
+For integrating it on the Android platform, be sure to follow all the steps in the [Integration Guide](https://talsec.gitbook.io/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
 
 Be sure to bookmark it and stay informed! :books: :sparkles:.
 
-# Reference to Legacy Documentation
+## Reference to Legacy Documentation
 
-If you encounter any discrepancies or errors in the documentation, please open an issue so it can be improved for the benefit of all users. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki), which includes comprehensive legacy details and guidance. Feedback is appreciated, as it helps refine resources and better support the community's needs.
+If you have any suggestions for improvement or notice anything that could be clarified in the new GitBook documentation, please open an issue. Your feedback helps us maintain high-quality resources for all users. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki), which includes comprehensive legacy details and guidance. Additionally, the old integration can be found when you checkout to a specific tag. Your input is invaluable in helping us improve our resources and provide even better support for your needs.
