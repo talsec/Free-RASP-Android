@@ -12,7 +12,7 @@
 
 freeRASP for Android is a mobile in-app protection and security monitoring SDK. It aims to cover the main aspects of RASP (Runtime App Self Protection) and application shielding.
 
-:loudspeaker: The official documentation has been moved to a new location. You can now find it [here](https://talsec.gitbook.io/freerasp). :loudspeaker:
+:loudspeaker: The official documentation has been moved to a new location. You can now find it [here](https://docs.talsec.app/freerasp). :loudspeaker:
 
 
 # Overview
@@ -33,7 +33,7 @@ Key features are the detection and prevention of
 * Untrusted installation method
 * App/Device (un)binding
 
-Additional freeRASP features include low latency, easy integration and a weekly [Security Report](https://talsec.gitbook.io/freerasp/security-report) containing detailed information about detected incidents and potential threats, summarizing the state of your app security.
+Additional freeRASP features include low latency, easy integration and a weekly [Security Report](https://docs.talsec.app/freerasp/security-report) containing detailed information about detected incidents and potential threats, summarizing the state of your app security.
 
 The commercial version provides a top-notch protection level, extra features, support and maintenance. One of the most valued commercial features is AppiCrypt® - App Integrity Cryptogram.
 
@@ -52,13 +52,14 @@ Learn more about freemium freeRASP features at [GitHub main repository](https://
 
 
 # :rocket: Discover Official Documentation
-Visit the [GitBook page](https://talsec.gitbook.io/freerasp) for comprehensive and up-to-date guides, tutorials, and technical documentation. It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of the project.
+Visit the [GitBook page](https://docs.talsec.app/freerasp) for comprehensive and up-to-date guides, tutorials, and technical documentation. It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of the project.
 
 ## :link: Integration Guide
-For integrating freeRASP on the Android platform, be sure to follow all the steps in the [Integration Guide](https://talsec.gitbook.io/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
+For integrating freeRASP on the Android platform, be sure to follow all the steps in the [Integration Guide](https://docs.talsec.app/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
 
 Be sure to bookmark it and stay informed! :books: :sparkles:.
 
 ## Reference to Legacy Documentation
 
 If you have any suggestions for improvement or notice anything that could be clarified in the new GitBook documentation, please open an issue. Your feedback helps us maintain high-quality resources for all users. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki), which includes comprehensive legacy details and guidance. Additionally, the old integration can be found when you checkout to a specific tag. Your input is invaluable in helping us improve our resources and provide even better support for your needs.
+ 
