@@ -62,4 +62,9 @@ Be sure to bookmark it and stay informed! :books: :sparkles:.
 ## Reference to Legacy Documentation
 
 If you have any suggestions for improvement or notice anything that could be clarified in the new GitBook documentation, please open an issue. Your feedback helps us maintain high-quality resources for all users. For information on older integration methods, you can refer to the [freeRASP wiki](https://github.com/talsec/Free-RASP-Android/wiki), which includes comprehensive legacy details and guidance. Additionally, the old integration can be found when you checkout to a specific tag. Your input is invaluable in helping us improve our resources and provide even better support for your needs.
- 
+
+## Enhancements
+
+If you have any ideas for improvements, feel free to [raise an issue](https://github.com/talsec/Free-RASP-Android/issues) and mark it with an **enhancement** label. We track these enhancements using [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) to keep tasks organized and connected to relevant issues or pull requests.
+
+You can check out the project board [here](https://github.com/orgs/talsec/projects/2).
