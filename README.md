@@ -51,13 +51,18 @@ Learn more about commercial features at [https://talsec.app](https://talsec.app)
 Learn more about freemium freeRASP features at [GitHub main repository](https://github.com/talsec/Free-RASP-Community).
 
 
-# :rocket: Discover Official Documentation
+# :book: Discover Official Documentation
 Visit the [GitBook page](https://docs.talsec.app/freerasp) for comprehensive and up-to-date guides, tutorials, and technical documentation. It serves as your go-to resource, offering everything from basic instructions to advanced tips and tricks to help you get the most out of the project.
 
 ## :link: Integration Guide
 For integrating freeRASP on the Android platform, be sure to follow all the steps in the [Integration Guide](https://docs.talsec.app/freerasp/integration). This guide provides detailed instructions to help you achieve a smooth and efficient integration.
 
 Be sure to bookmark it and stay informed! :books: :sparkles:.
+
+## :rocket: What's New and Changelog
+Stay informed and make the most of freeRASP by checking out [What's New and Changelog](https://docs.talsec.app/freerasp/whats-new-and-changelog)! Here, you’ll discover the latest features, enhancements, and bug fixes we’ve implemented to improve your experience across all platforms, including Android, iOS, Flutter, React Native, Capacitor, and Cordova. 
+
+Don’t miss out on any updates and explore the changelog to see how we’re continually making freeRASP better for you!
 
 ## Reference to Legacy Documentation
 
