@@ -75,3 +75,6 @@ Don’t miss out on any updates and explore the changelog to see how we’re con
 If you have any ideas for improvements, feel free to [raise an issue](https://github.com/talsec/Free-RASP-Android/issues) and mark it with an **enhancement** label. We track these enhancements using [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) to keep tasks organized and connected to relevant issues or pull requests.
 
 You can check out the project board [here](https://github.com/orgs/talsec/projects/2).
+
+# :page_facing_up: License
+This project is provided as freemium software, i.e. there is a fair usage policy that imposes some limitations on the free usage. The SDK software consists of open-source and binary parts, which is the property of Talsec. The open-source part is licensed under the MIT License - see the LICENSE file for details.

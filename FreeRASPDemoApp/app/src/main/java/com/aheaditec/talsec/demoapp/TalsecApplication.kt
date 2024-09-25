@@ -2,6 +2,7 @@ package com.aheaditec.talsec.demoapp
 
 import android.app.Application
 import android.util.Log
+import com.aheaditec.talsec_security.security.api.SuspiciousAppInfo
 import com.aheaditec.talsec_security.security.api.Talsec
 import com.aheaditec.talsec_security.security.api.TalsecConfig
 import com.aheaditec.talsec_security.security.api.ThreatListener
@@ -15,13 +16,13 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         // Copy the result from logcat and assign to expectedSigningCertificateHashBase64
         // Log.e("SigningCertificateHash", Utils.computeSigningCertificateHash(this))
 
-        val config = TalsecConfig(
+        val config = TalsecConfig.Builder(
             expectedPackageName,
-            expectedSigningCertificateHashBase64,
-            watcherMail,
-            supportedAlternativeStores,
-            isProd
-        )
+            expectedSigningCertificateHashBase64)
+            .watcherMail(watcherMail)
+            .supportedAlternativeStores(supportedAlternativeStores)
+            .prod(isProd)
+            .build()
         
         ThreatListener(this, deviceStateListener).registerListener(this)
         Talsec.start(this, config)
@@ -69,6 +70,11 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     override fun onObfuscationIssuesDetected() {
         // Set your reaction
         println("onObfuscationIssuesDetected")
+    }
+
+    override fun onMalwareDetected(p0: MutableList<SuspiciousAppInfo>?) {
+        // Set your reaction
+        println("onMalwareDetected")
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
