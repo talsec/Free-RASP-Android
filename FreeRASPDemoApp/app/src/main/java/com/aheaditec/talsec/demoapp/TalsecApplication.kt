@@ -93,6 +93,10 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             println("onDeveloperModeDetected")
         }
 
+        override fun onADBEnabledDetected() {
+            println("onADBEnabledDetected")
+        }
+
         override fun onSystemVPNDetected() {
             println("onSystemVPNDetected")
         }
