@@ -34,7 +34,7 @@ android {
 
 dependencies {
     // freeRASP SDK
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:13.0.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:13.2.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.12.0'
