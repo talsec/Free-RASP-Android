@@ -30,15 +30,15 @@ object Utils {
     private fun getApkSigningCertificate(packageInfo: PackageInfo): List<String> {
         val signingHashes = mutableListOf<String>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            packageInfo.signingInfo.apply {
+            packageInfo.signingInfo?.apply {
                 if (hasMultipleSigners()) {
-                    apkContentsSigners.forEach {
+                    apkContentsSigners?.forEach {
                         signingHashes.add(
                             hashCertificate(it)
                         )
                     }
                 } else {
-                    signingCertificateHistory.forEach {
+                    signingCertificateHistory?.forEach {
                         signingHashes.add(
                             hashCertificate(it)
                         )
@@ -46,7 +46,7 @@ object Utils {
                 }
             }
         } else {
-            packageInfo.signatures.forEach {
+            packageInfo.signatures?.forEach {
                 signingHashes.add(
                     hashCertificate(it)
                 )

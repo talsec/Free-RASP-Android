@@ -1,13 +1,26 @@
 package com.aheaditec.talsec.demoapp
 
+import android.app.Activity
 import android.app.Application
+import android.os.Build
+import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager.SCREEN_RECORDING_STATE_VISIBLE
 import com.aheaditec.talsec_security.security.api.SuspiciousAppInfo
 import com.aheaditec.talsec_security.security.api.Talsec
 import com.aheaditec.talsec_security.security.api.TalsecConfig
 import com.aheaditec.talsec_security.security.api.ThreatListener
+import java.util.function.Consumer
 
 class TalsecApplication : Application(), ThreatListener.ThreatDetected {
+
+    private var currentActivity: Activity? = null
+    private var screenCaptureCallback: Activity.ScreenCaptureCallback? = null
+    private val screenRecordCallback: Consumer<Int> = Consumer<Int> { state ->
+        if (state == SCREEN_RECORDING_STATE_VISIBLE) {
+            Talsec.onScreenRecordingDetected()
+        }
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -26,6 +39,64 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         
         ThreatListener(this, deviceStateListener).registerListener(this)
         Talsec.start(this, config)
+
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+            override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
+
+                // Set to 'true' to block screen capture
+                Talsec.blockScreenCapture(activity, false)
+            }
+
+            override fun onActivityStarted(activity: Activity) {
+                unregisterCallbacks()
+                currentActivity = activity
+                registerCallbacks(activity)
+            }
+
+            override fun onActivityResumed(activity: Activity) {}
+            override fun onActivityPaused(activity: Activity) {}
+
+            override fun onActivityStopped(activity: Activity) {
+                if (activity == currentActivity) {
+                    unregisterCallbacks()
+                    currentActivity = null
+                }
+            }
+
+            override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
+            override fun onActivityDestroyed(activity: Activity) {}
+        })
+    }
+
+    private fun registerCallbacks(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            screenCaptureCallback = Activity.ScreenCaptureCallback {
+                Talsec.onScreenshotDetected()
+            }
+            activity.registerScreenCaptureCallback(
+                baseContext.mainExecutor, screenCaptureCallback!!
+            )
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            val initialState = activity.windowManager.addScreenRecordingCallback(
+                mainExecutor, screenRecordCallback
+            )
+            screenRecordCallback.accept(initialState)
+        }
+    }
+
+    private fun unregisterCallbacks() {
+        currentActivity?.let { activity ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && screenCaptureCallback != null) {
+                activity.unregisterScreenCaptureCallback(screenCaptureCallback!!)
+                screenCaptureCallback = null
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                activity.windowManager.removeScreenRecordingCallback(screenRecordCallback)
+            }
+        }
     }
 
     override fun onRootDetected() {
@@ -75,6 +146,14 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
     override fun onMalwareDetected(p0: MutableList<SuspiciousAppInfo>?) {
         // Set your reaction
         println("onMalwareDetected")
+    }
+
+    override fun onScreenshotDetected() {
+        println("onScreenshotDetected")
+    }
+
+    override fun onScreenRecordingDetected() {
+        println("onScreenRecordingDetected")
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
