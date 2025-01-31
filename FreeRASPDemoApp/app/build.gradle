@@ -7,8 +7,8 @@ android {
     defaultConfig {
         applicationId "com.aheaditec.talsec.demoapp"
         minSdk 23
-        compileSdk 34
-        targetSdk 34
+        compileSdk 35
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -30,11 +30,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    namespace "com.aheaditec.talsec.demoapp"
 }
 
 dependencies {
     // freeRASP SDK
-    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:13.2.0'
+    implementation 'com.aheaditec.talsec.security:TalsecSecurity-Community:14.0.1'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.12.0'
