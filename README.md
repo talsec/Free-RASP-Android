@@ -12,7 +12,7 @@
 
 freeRASP SDK is RASP for Android providing a mobile in-app protection and security monitoring. It aims to cover the main aspects of Runtime App Self Protection and application shielding.
 
-:loudspeaker: The official documentation has been moved to a new location. You can now find it [here](https://docs.talsec.app/docs-and-articles-portal). :loudspeaker:
+:loudspeaker: [The official documentation has been moved to a new location. You can now find it here](https://docs.talsec.app/docs-and-articles-portal). :loudspeaker:
 
 # Overview
 
