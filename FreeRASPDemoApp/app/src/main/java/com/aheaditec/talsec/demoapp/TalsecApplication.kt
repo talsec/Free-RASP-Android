@@ -97,9 +97,12 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         println("onObfuscationIssuesDetected")
     }
 
-    override fun onMalwareDetected(suspiciousApp: MutableList<SuspiciousAppInfo>) {
+    override fun onMalwareDetected(suspiciousApps: List<SuspiciousAppInfo>) {
         // Set your reaction
         println("onMalwareDetected")
+        suspiciousApps.forEach {
+            println("Suspicious app: ${it.packageInfo.packageName}, reason: ${it.reason}")
+        }
     }
 
     override fun onScreenshotDetected() {
