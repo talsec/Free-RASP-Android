@@ -2,8 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aheaditec.talsec.demoapp">
 
+    <!-- Optional for Screen Protection features -->
     <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
     <uses-permission android:name="android.permission.DETECT_SCREEN_RECORDING" />
+
+    <!-- Optional for location spoofing feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Optional for unsecure WiFi detection feature -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".TalsecApplication"

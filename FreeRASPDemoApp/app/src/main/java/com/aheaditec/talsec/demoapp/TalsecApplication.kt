@@ -2,25 +2,14 @@ package com.aheaditec.talsec.demoapp
 
 import android.app.Activity
 import android.app.Application
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.WindowManager.SCREEN_RECORDING_STATE_VISIBLE
+import com.aheaditec.talsec_security.security.api.ScreenProtector
 import com.aheaditec.talsec_security.security.api.SuspiciousAppInfo
 import com.aheaditec.talsec_security.security.api.Talsec
 import com.aheaditec.talsec_security.security.api.TalsecConfig
 import com.aheaditec.talsec_security.security.api.ThreatListener
-import java.util.function.Consumer
 
 class TalsecApplication : Application(), ThreatListener.ThreatDetected {
-
-    private var currentActivity: Activity? = null
-    private var screenCaptureCallback: Activity.ScreenCaptureCallback? = null
-    private val screenRecordCallback: Consumer<Int> = Consumer<Int> { state ->
-        if (state == SCREEN_RECORDING_STATE_VISIBLE) {
-            Talsec.onScreenRecordingDetected()
-        }
-    }
 
     override fun onCreate() {
         super.onCreate()
@@ -35,68 +24,33 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             .watcherMail(watcherMail)
             .supportedAlternativeStores(supportedAlternativeStores)
             .prod(isProd)
+            .killOnBypass(true) // determines if the app should be killed within the SDK if the callbacks are hooked/modified by an attacker
             .build()
         
-        ThreatListener(this, deviceStateListener).registerListener(this)
+        ThreatListener(this, deviceStateListener, raspExecutionStateListener).registerListener(this)
         Talsec.start(this, config)
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
-
-                // Set to 'true' to block screen capture
                 Talsec.blockScreenCapture(activity, false)
             }
 
-            override fun onActivityStarted(activity: Activity) {
-                unregisterCallbacks()
-                currentActivity = activity
-                registerCallbacks(activity)
+            override fun onActivityStarted(activity: Activity) {}
+
+            override fun onActivityResumed(activity: Activity) {
+                ScreenProtector.INSTANCE.registerScreenCallbacks(activity)
             }
 
-            override fun onActivityResumed(activity: Activity) {}
-            override fun onActivityPaused(activity: Activity) {}
-
-            override fun onActivityStopped(activity: Activity) {
-                if (activity == currentActivity) {
-                    unregisterCallbacks()
-                    currentActivity = null
-                }
+            override fun onActivityPaused(activity: Activity) {
+                ScreenProtector.INSTANCE.unregisterScreenCallbacks(activity)
             }
+
+            override fun onActivityStopped(activity: Activity) {}
 
             override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
+
             override fun onActivityDestroyed(activity: Activity) {}
         })
-    }
-
-    private fun registerCallbacks(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            screenCaptureCallback = Activity.ScreenCaptureCallback {
-                Talsec.onScreenshotDetected()
-            }
-            activity.registerScreenCaptureCallback(
-                baseContext.mainExecutor, screenCaptureCallback!!
-            )
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            val initialState = activity.windowManager.addScreenRecordingCallback(
-                mainExecutor, screenRecordCallback
-            )
-            screenRecordCallback.accept(initialState)
-        }
-    }
-
-    private fun unregisterCallbacks() {
-        currentActivity?.let { activity ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && screenCaptureCallback != null) {
-                activity.unregisterScreenCaptureCallback(screenCaptureCallback!!)
-                screenCaptureCallback = null
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                activity.windowManager.removeScreenRecordingCallback(screenRecordCallback)
-            }
-        }
     }
 
     override fun onRootDetected() {
@@ -143,21 +97,42 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         println("onObfuscationIssuesDetected")
     }
 
-    override fun onMalwareDetected(p0: MutableList<SuspiciousAppInfo>?) {
+    override fun onMalwareDetected(suspiciousApps: List<SuspiciousAppInfo>) {
         // Set your reaction
         println("onMalwareDetected")
+        suspiciousApps.forEach {
+            println("Suspicious app: ${it.packageInfo.packageName}, reason: ${it.reason}")
+        }
     }
 
     override fun onScreenshotDetected() {
+        // Set your reaction
         println("onScreenshotDetected")
     }
 
     override fun onScreenRecordingDetected() {
+        // Set your reaction
         println("onScreenRecordingDetected")
     }
 
     override fun onMultiInstanceDetected() {
+        // Set your reaction
         println("onMultiInstanceDetected")
+    }
+
+    override fun onUnsecureWifiDetected() {
+        // Set your reaction
+        println("onUnsecureWifiDetected")
+    }
+
+    override fun onTimeSpoofingDetected() {
+        // Set your reaction
+        println("onTimeSpoofingDetected")
+    }
+
+    override fun onLocationSpoofingDetected() {
+        // Set your reaction
+        println("onLocationSpoofingDetected")
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
@@ -173,15 +148,25 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
         }
 
         override fun onDeveloperModeDetected() {
+            // Set your reaction
             println("onDeveloperModeDetected")
         }
 
         override fun onADBEnabledDetected() {
+            // Set your reaction
             println("onADBEnabledDetected")
         }
 
         override fun onSystemVPNDetected() {
+            // Set your reaction
             println("onSystemVPNDetected")
+        }
+    }
+
+    // This is optional. Use only if you are interested in RASP execution state information
+    private val raspExecutionStateListener = object : ThreatListener.RaspExecutionState() {
+        override fun onAllChecksFinished() {
+            println("onAllChecksFinished")
         }
     }
 
@@ -196,6 +181,6 @@ class TalsecApplication : Application(), ThreatListener.ThreatDetected {
             // Google Play Store and Huawei AppGallery are supported out of the box, you can pass empty array or null or add other stores like the Samsung's one:
             "com.sec.android.app.samsungapps" // Samsung Store
         )
-        private val isProd = true
+        private const val isProd = true
     }
 }
