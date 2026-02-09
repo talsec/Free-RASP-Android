@@ -29,7 +29,7 @@ android {
 
 dependencies {
     // freeRASP SDK
-    implementation libs.talsec.security
+    implementation libs.talsec.freerasp
     implementation libs.kotlin.stdlib
     implementation libs.bundles.androidx
 }

@@ -5,7 +5,7 @@ core-ktx = "1.17.0"
 appcompat = "1.7.1"
 material = "1.13.0"
 constraintlayout = "2.2.1"
-talsec-security = "18.0.2"
+talsec-freerasp = "18.0.2"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -13,7 +13,7 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-talsec-security = { module = "com.aheaditec.talsec.security:TalsecSecurity-Community", version.ref = "talsec-security" }
+talsec-freerasp = { module = "com.aheaditec.talsec.security:TalsecSecurity-Community", version.ref = "talsec-freerasp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
