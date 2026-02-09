@@ -33,7 +33,7 @@ object Utils {
             context.packageName,
             provideSignatureFlagsBaseOnSdk()
         )
-        return getApkSigningCertificate(packageInfo)[0]
+        return getApkSigningCertificate(packageInfo).first()
     }
 
     private fun getApkSigningCertificate(packageInfo: PackageInfo): List<String> {
