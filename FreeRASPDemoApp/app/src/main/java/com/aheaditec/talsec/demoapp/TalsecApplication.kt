@@ -176,7 +176,6 @@ class TalsecApplication : Application() {
         })
     }
 
-
     private companion object {
         private const val EXPECTED_PACKAGE_NAME = "com.aheaditec.talsec.demoapp" // Don't use Context.getPackageName!
         private val EXPECTED_SIGNING_CERTIFICATE_HASH_BASE64 = arrayOf(
