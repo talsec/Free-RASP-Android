@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.android.application) apply false
 }
 
-// noinspection GrDeprecatedAPIUsage
 tasks.register('clean', Delete) {
+    //noinspection GrDeprecatedAPIUsage
     delete rootProject.buildDir
 }
