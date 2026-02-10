@@ -9,50 +9,46 @@ import android.util.Base64
 import java.security.MessageDigest
 
 object Utils {
-    
-    // Helper for obtaining your signing certificate hash used to initialize TalsecConfig
-    fun computeSigningCertificateHash(context: Context): String {
-        val packageInfo = context.packageManager.getPackageInfo(
-            context.packageName,
-            provideSignatureFlagsBaseOnSdk()
-        )
-        return getApkSigningCertificate(packageInfo)[0]
-    }
 
     private fun provideSignatureFlagsBaseOnSdk(): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             PackageManager.GET_SIGNING_CERTIFICATES
         } else {
+            @Suppress("DEPRECATION")
             PackageManager.GET_SIGNATURES
         }
     }
 
+    /**
+     * Computes the signing certificate hash of the current application.
+     *
+     * Returns a Base64-encoded SHA-256 hash of the app's signing certificate.
+     * This value is used to initialize [TalsecConfig] for security validation.
+     *
+     * @param context The application context used to retrieve package information.
+     * @return Base64-encoded SHA-256 hash of the first signing certificate.
+     */
+    fun computeSigningCertificateHash(context: Context): String {
+        val packageInfo = context.packageManager.getPackageInfo(
+            context.packageName,
+            provideSignatureFlagsBaseOnSdk()
+        )
+        return getApkSigningCertificate(packageInfo).first()
+    }
+
     private fun getApkSigningCertificate(packageInfo: PackageInfo): List<String> {
-        val signingHashes = mutableListOf<String>()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            packageInfo.signingInfo?.apply {
-                if (hasMultipleSigners()) {
-                    apkContentsSigners?.forEach {
-                        signingHashes.add(
-                            hashCertificate(it)
-                        )
-                    }
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.signingInfo?.let { signingInfo ->
+                if (signingInfo.hasMultipleSigners()) {
+                    signingInfo.apkContentsSigners?.map(::hashCertificate).orEmpty()
                 } else {
-                    signingCertificateHistory?.forEach {
-                        signingHashes.add(
-                            hashCertificate(it)
-                        )
-                    }
+                    signingInfo.signingCertificateHistory?.map(::hashCertificate).orEmpty()
                 }
-            }
+            }.orEmpty()
         } else {
-            packageInfo.signatures?.forEach {
-                signingHashes.add(
-                    hashCertificate(it)
-                )
-            }
+            @Suppress("DEPRECATION")
+            packageInfo.signatures?.map(::hashCertificate).orEmpty()
         }
-        return signingHashes
     }
 
     private fun hashCertificate(signature: Signature): String {
