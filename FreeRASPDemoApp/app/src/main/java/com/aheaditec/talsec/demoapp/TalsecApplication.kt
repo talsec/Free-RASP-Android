@@ -61,7 +61,7 @@ class TalsecApplication : Application() {
             // Set your reaction
             println("onMalwareDetected")
             suspiciousApps.forEach {
-                println("Suspicious app: ${it.packageInfo.packageName}, reason: ${it.reason}")
+                println("Suspicious app: ${it.packageInfo.packageName}, reasons: ${it.reasons}")
             }
         }
 
@@ -161,11 +161,11 @@ class TalsecApplication : Application() {
             override fun onActivityStarted(activity: Activity) {}
 
             override fun onActivityResumed(activity: Activity) {
-                ScreenProtector.INSTANCE.registerScreenCallbacks(activity)
+                ScreenProtector.registerScreenCallbacks(activity)
             }
 
             override fun onActivityPaused(activity: Activity) {
-                ScreenProtector.INSTANCE.unregisterScreenCallbacks(activity)
+                ScreenProtector.unregisterScreenCallbacks(activity)
             }
 
             override fun onActivityStopped(activity: Activity) {}
