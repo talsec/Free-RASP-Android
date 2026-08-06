@@ -1,7 +1,7 @@
 [versions]
-kotlin = "2.4.10"
+kotlin = "2.2.10"
 agp = "9.3.1"
-core-ktx = "1.19.0"
+core-ktx = "1.17.0"
 appcompat = "1.7.1"
 material = "1.14.0"
 constraintlayout = "2.2.2"

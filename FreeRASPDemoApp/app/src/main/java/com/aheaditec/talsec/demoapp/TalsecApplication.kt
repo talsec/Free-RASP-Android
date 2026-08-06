@@ -3,129 +3,134 @@ package com.aheaditec.talsec.demoapp
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.aheaditec.talsec_security.security.api.ScreenProtector
-import com.aheaditec.talsec_security.security.api.SuspiciousAppInfo
-import com.aheaditec.talsec_security.security.api.Talsec
-import com.aheaditec.talsec_security.security.api.TalsecConfig
-import com.aheaditec.talsec_security.security.api.ThreatListener
+import app.talsec.rasp.security.api.ScreenProtector
+import app.talsec.rasp.security.api.SuspiciousAppInfo
+import app.talsec.rasp.security.api.Talsec
+import app.talsec.rasp.security.api.TalsecConfig
+import app.talsec.rasp.security.api.ThreatListener
 
 class TalsecApplication : Application() {
 
     // Listener for security threat detection events (root, debugger, emulator, tampering, etc.)
     private val threatDetected = object : ThreatListener.ThreatDetected() {
-        override fun onRootDetected() {
+        override fun onPrivilegedAccess() {
             // Set your reaction
-            println("onRootDetected")
+            println("onPrivilegedAccess")
         }
 
-        override fun onDebuggerDetected() {
+        override fun onDebug() {
             // Set your reaction
             // Triggered only in release build
-            println("onDebuggerDetected")
+            println("onDebug")
         }
 
-        override fun onEmulatorDetected() {
+        override fun onSimulator() {
             // Set your reaction
             // Triggered only in release build
-            println("onEmulatorDetected")
+            println("onSimulator")
         }
 
-        override fun onTamperDetected() {
+        override fun onAppIntegrity() {
             // Set your reaction
             // Triggered only in release build
-            println("onTamperDetected")
+            println("onAppIntegrity")
         }
 
-        override fun onUntrustedInstallationSourceDetected() {
+        override fun onUnofficialStore() {
             // Set your reaction
             // Triggered only in release build
-            println("onUntrustedInstallationSourceDetected")
+            println("onUnofficialStore")
         }
 
-        override fun onHookDetected() {
+        override fun onHooks() {
             // Set your reaction
-            println("onHookDetected")
+            println("onHooks")
         }
 
-        override fun onDeviceBindingDetected() {
+        override fun onDeviceBinding() {
             // Set your reaction
-            println("onDeviceBindingDetected")
+            println("onDeviceBinding")
         }
 
-        override fun onObfuscationIssuesDetected() {
+        override fun onObfuscationIssues() {
             // Set your reaction
-            println("onObfuscationIssuesDetected")
+            println("onObfuscationIssues")
         }
 
-        override fun onMalwareDetected(suspiciousApps: List<SuspiciousAppInfo>) {
+        override fun onMalware(suspiciousApps: List<SuspiciousAppInfo>) {
             // Set your reaction
-            println("onMalwareDetected")
+            println("onMalware")
             suspiciousApps.forEach {
                 println("Suspicious app: ${it.packageInfo.packageName}, reasons: ${it.reasons}")
             }
         }
 
-        override fun onAutomationDetected() {
+        override fun onAutomation() {
             // Set your reaction
-            println("onAutomationDetected")
+            println("onAutomation")
         }
 
-        override fun onScreenshotDetected() {
+        override fun onScreenshot() {
             // Set your reaction
-            println("onScreenshotDetected")
+            println("onScreenshot")
         }
 
-        override fun onScreenRecordingDetected() {
+        override fun onScreenRecording() {
             // Set your reaction
-            println("onScreenRecordingDetected")
+            println("onScreenRecording")
         }
 
-        override fun onMultiInstanceDetected() {
+        override fun onMultiInstance() {
             // Set your reaction
-            println("onMultiInstanceDetected")
+            println("onMultiInstance")
         }
 
-        override fun onUnsecureWifiDetected() {
+        override fun onUnsecureWifi() {
             // Set your reaction
-            println("onUnsecureWifiDetected")
+            println("onUnsecureWifi")
         }
 
-        override fun onTimeSpoofingDetected() {
+        override fun onTimeSpoofing() {
             // Set your reaction
-            println("onTimeSpoofingDetected")
+            println("onTimeSpoofing")
         }
 
-        override fun onLocationSpoofingDetected() {
+        override fun onLocationSpoofing() {
             // Set your reaction
-            println("onLocationSpoofingDetected")
+            println("onLocationSpoofing")
+        }
+
+        override fun onBootloader() {
+            // Set your reaction
+            println("onBootloader")
         }
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
     private val deviceState = object : ThreatListener.DeviceState() {
-        override fun onUnlockedDeviceDetected() {
+        override fun onPasscode() {
             // Set your reaction
-            println("onUnlockedDeviceDetected")
+            println("onPasscode")
         }
 
-        override fun onHardwareBackedKeystoreNotAvailableDetected() {
+        override fun onSecureHardwareNotAvailable() {
             // Set your reaction
-            println("onHardwareBackedKeystoreNotAvailableDetected")
+            println("onSecureHardwareNotAvailable")
         }
 
-        override fun onDeveloperModeDetected() {
+        override fun onDevMode() {
             // Set your reaction
-            println("onDeveloperModeDetected")
+            println("onDevMode")
         }
 
-        override fun onADBEnabledDetected() {
+        override fun onAdbEnabled() {
             // Set your reaction
-            println("onADBEnabledDetected")
+            println("onAdbEnabled")
         }
 
-        override fun onSystemVPNDetected() {
+        override fun onSystemVpn() {
             // Set your reaction
-            println("onSystemVPNDetected")
+            println("onSystemVpn")
         }
     }
 
