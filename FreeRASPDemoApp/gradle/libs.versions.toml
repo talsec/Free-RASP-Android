@@ -1,11 +1,11 @@
 [versions]
 kotlin = "2.3.0"
-agp = "9.0.0"
+agp = "9.3.1"
 core-ktx = "1.17.0"
 appcompat = "1.7.1"
-material = "1.13.0"
-constraintlayout = "2.2.1"
-talsec-freerasp = "18.3.0"
+material = "1.14.0"
+constraintlayout = "2.2.2"
+talsec-freerasp = "19.2.1"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
