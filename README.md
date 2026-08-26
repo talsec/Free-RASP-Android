@@ -27,10 +27,12 @@ freeRASP SDK is designed to combat
 
 Key features are the detection and prevention of
 
-* Root/Jailbreak (e.g., su, Magisk, unc0ver, check1rain, Dopamine)
-* Hooking framework (e.g., Frida, Shadow)
+* Root/Jailbreak (e.g., su, Magisk, KernelSU, Shamiko, HideMyApplist, unc0ver, checkra1n, Dopamine)
+* Unlocked or compromised bootloader
+* Hooking framework (e.g., Frida, LSPosed, Shadow)
+* UI automation and driven-input attacks (e.g., Appium)
 * Untrusted installation method
-* App/Device (un)binding
+* App Data Migration protection
 
 Additional freeRASP features include low latency, easy integration and a weekly [Security Report](https://docs.talsec.app/freerasp/security-report?utm_source=github) containing detailed information about detected incidents and potential threats, summarizing the state of your app security.
 
