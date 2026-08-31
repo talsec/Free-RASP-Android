@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.talsec)
+    alias(libs.plugins.talsec.plugin)
 }
 
 android {
@@ -9,8 +9,8 @@ android {
     defaultConfig {
         applicationId "com.aheaditec.talsec.demoapp"
         minSdkVersion 23
-        compileSdkVersion 36
-        targetSdkVersion 36
+        compileSdkVersion 37
+        targetSdkVersion 37
         versionCode 1
         versionName "1.0"
     }

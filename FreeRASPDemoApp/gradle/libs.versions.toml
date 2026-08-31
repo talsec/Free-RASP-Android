@@ -1,11 +1,11 @@
 [versions]
-kotlin = "2.3.0"
+kotlin = "2.4.10"
 agp = "9.3.2"
-core-ktx = "1.17.0"
-appcompat = "1.7.1"
+core-ktx = "1.19.0"
+appcompat = "1.8.0"
 material = "1.14.0"
 constraintlayout = "2.2.2"
-talsec = "0.0.20"
+talsec-plugin = "0.0.20"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -16,7 +16,7 @@ constraintlayout = { module = "androidx.constraintlayout:constraintlayout", vers
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-talsec = { id = "app.talsec.plugin", version.ref = "talsec" }
+talsec-plugin = { id = "app.talsec.plugin", version.ref = "talsec-plugin" }
 
 [bundles]
 androidx = ["core-ktx", "appcompat", "material", "constraintlayout"]
