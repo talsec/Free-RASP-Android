@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.talsec)
 }
 
 android {
@@ -25,11 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
+    talsec {
+        sdkVersion = "19.2.3"
+    }
 }
 
 dependencies {
-    // freeRASP SDK
-    implementation libs.talsec.freerasp
     implementation libs.kotlin.stdlib
     implementation libs.bundles.androidx
 }

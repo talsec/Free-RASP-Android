@@ -3,6 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url "https://europe-west3-maven.pkg.dev/talsec-artifact-repository/plugin" }
     }
 }
 
@@ -12,7 +13,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "https://europe-west3-maven.pkg.dev/talsec-artifact-repository/freerasp" }
-        maven { url 'https://europe-west3-maven.pkg.dev/talsec-artifact-repository/common' }
+        maven { url "https://europe-west3-maven.pkg.dev/talsec-artifact-repository/common" }
     }
 }
 
