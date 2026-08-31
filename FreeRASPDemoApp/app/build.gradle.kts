@@ -1,11 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.talsec.plugin)
 }
 
 android {
     namespace = "com.aheaditec.talsec.demoapp"
-    compileSdk = 37
+    compileSdk {
+        version = release(37)
+    }
 
     defaultConfig {
         applicationId = "com.aheaditec.talsec.demoapp"
@@ -18,6 +21,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -28,11 +32,21 @@ android {
     }
 
     talsec {
-        sdkVersion = "19.2.3"
+        sdkVersion = "19.2.3" // todo
+        // offlineToken = "..." // optional
+        // platform = "Flutter" // optional
     }
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.bundles.androidx)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }
