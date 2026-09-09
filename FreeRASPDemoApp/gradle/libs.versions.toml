@@ -3,9 +3,9 @@ agp = "9.3.2"
 activityCompose = "1.13.0"
 composeBom = "2026.08.00"
 coreKtx = "1.19.0"
-kotlin = "2.4.10"
+kotlin = "2.4.20"
 lifecycleRuntimeKtx = "2.11.0"
-talsecPlugin = "0.0.20" # todo
+talsecPlugin = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
