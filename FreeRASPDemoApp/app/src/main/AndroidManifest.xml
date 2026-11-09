@@ -5,6 +5,7 @@
     <!-- Optional for Screen Protection features -->
     <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
     <uses-permission android:name="android.permission.DETECT_SCREEN_RECORDING" />
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
 
     <!-- Optional for location spoofing feature -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

@@ -2,6 +2,7 @@ package com.aheaditec.talsec.demoapp
 
 import android.app.Activity
 import android.app.Application
+import android.os.Build
 import android.os.Bundle
 import app.talsec.rasp.security.api.ScreenProtector
 import app.talsec.rasp.security.api.SuspiciousAppInfo
@@ -57,10 +58,10 @@ class TalsecApplication : Application() {
             println("onObfuscationIssues")
         }
 
-        override fun onMalware(packageInfo: List<SuspiciousAppInfo>) {
+        override fun onMalware(suspiciousApps: List<SuspiciousAppInfo>) {
             // Set your reaction
             println("onMalware")
-            packageInfo.forEach {
+            suspiciousApps.forEach {
                 println("Suspicious app: ${it.packageInfo.packageName}, reasons: ${it.reasons}")
             }
         }
@@ -173,8 +174,12 @@ class TalsecApplication : Application() {
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
-                Talsec.blockScreenCapture(activity, false)
-                Talsec.blockScreenControl(activity, false)
+                // It is up to the integrator whether these protections are enabled or disabled
+                Talsec.blockScreenCapture(activity, true)
+                Talsec.blockScreenControl(activity, true)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    Talsec.blockOverlayWindows(activity, true)
+                }
             }
 
             override fun onActivityStarted(activity: Activity) {}
