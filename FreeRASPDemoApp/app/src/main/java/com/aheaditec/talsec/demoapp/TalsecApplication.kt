@@ -57,10 +57,10 @@ class TalsecApplication : Application() {
             println("onObfuscationIssues")
         }
 
-        override fun onMalware(suspiciousApps: List<SuspiciousAppInfo>) {
+        override fun onMalware(packageInfo: List<SuspiciousAppInfo>) {
             // Set your reaction
             println("onMalware")
-            suspiciousApps.forEach {
+            packageInfo.forEach {
                 println("Suspicious app: ${it.packageInfo.packageName}, reasons: ${it.reasons}")
             }
         }
@@ -104,6 +104,11 @@ class TalsecApplication : Application() {
             // Set your reaction
             println("onBootloader")
         }
+
+        override fun onOngoingCall(state: ThreatListener.CallState) {
+            // Set your reaction
+            println("onOngoingCall: ${state.name}")
+        }
     }
 
     // This is optional. Use only if you are interested in device state information like device lock and HW backed keystore state
@@ -136,8 +141,16 @@ class TalsecApplication : Application() {
 
     // This is optional. Use only if you are interested in RASP execution state information
     private val raspExecutionState = object : ThreatListener.RaspExecutionState() {
-        override fun onAllChecksFinished() {
-            println("onAllChecksFinished")
+        override fun onCriticalChecksFinished() {
+            println("onCriticalChecksFinished")
+        }
+
+        override fun onFastChecksFinished() {
+            println("onFastChecksFinished")
+        }
+
+        override fun onPostponedChecksFinished() {
+            println("onPostponedChecksFinished")
         }
     }
 
@@ -161,16 +174,19 @@ class TalsecApplication : Application() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
                 Talsec.blockScreenCapture(activity, false)
+                Talsec.blockScreenControl(activity, false)
             }
 
             override fun onActivityStarted(activity: Activity) {}
 
             override fun onActivityResumed(activity: Activity) {
                 ScreenProtector.registerScreenCallbacks(activity)
+                Talsec.startOngoingCallDetection(activity)
             }
 
             override fun onActivityPaused(activity: Activity) {
                 ScreenProtector.unregisterScreenCallbacks(activity)
+                Talsec.stopOngoingCallDetection(activity)
             }
 
             override fun onActivityStopped(activity: Activity) {}
