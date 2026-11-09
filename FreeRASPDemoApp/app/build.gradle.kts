@@ -32,7 +32,7 @@ android {
     }
 
     talsec {
-        sdkVersion = "19.3.0"
+        sdkVersion = "20.0.1"
         // offlineToken = "..." // optional
         // platform = "Flutter" // optional
     }
